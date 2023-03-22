@@ -1,0 +1,26 @@
+.wrapper {
+   background-size: cover;
+   background-image: linear-gradient(
+         rgba(254, 254, 254, 1) 5%,
+         rgba(0, 0, 0, 0.1) 100%
+      ),
+      url("./images/background.jpg");
+   height: 40rem;
+   display: flex;
+   justify-content: flex-end;
+   margin-top: 2rem;
+   box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+}
+
+.slogan {
+   display: flex;
+   justify-content: flex-end;
+   font-size: 4rem;
+   font-family: "Indie Flower", cursive;
+   color: #003380;
+}
+
+.poppers {
+   height: 0;
+   font-family: "Indie Flower", cursive;
+}

@@ -1,0 +1,9 @@
+.wrapper {
+   margin: 3rem;
+}
+
+.article {
+   display: flex;
+   justify-content: center;
+   margin: 2rem 0;
+}

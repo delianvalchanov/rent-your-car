@@ -1,0 +1,53 @@
+.wrapper {
+   margin: 2rem 0;
+}
+
+.heading {
+   text-align: center;
+   font-family: "Indie Flower", cursive;
+   font-size: 3rem;
+   color: black;
+   padding-top: 2rem;
+}
+
+.articleWrapper {
+   justify-content: center;
+   align-items: center;
+   margin: 4rem 0;
+}
+
+.imageWrapper {
+   display: flex;
+   justify-content: center;
+}
+
+.image {
+   width: 20rem;
+   height: 10rem;
+   border-radius: 2rem;
+   object-fit: cover;
+   box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
+      rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+}
+
+.image:hover {
+   scale: 1.1;
+}
+
+.descWrapper {
+   display: flex;
+   flex-direction: column;
+   justify-content: end;
+}
+
+.descHeading {
+   margin-bottom: 2rem;
+   font-family: "Indie Flower", cursive;
+   font-size: 2rem;
+}
+
+.desc {
+   font-size: 1rem;
+   font-style: italic;
+   width: 40rem;
+}

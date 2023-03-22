@@ -1,0 +1,2 @@
+export { CarArticle } from "./CarArticle";
+

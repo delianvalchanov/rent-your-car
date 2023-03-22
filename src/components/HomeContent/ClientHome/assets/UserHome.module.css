@@ -1,0 +1,73 @@
+.heading {
+   font-size: 3rem;
+   font-family: "Indie Flower", cursive;
+   text-align: center;
+   margin: 1rem 0 1rem 0;
+}
+
+.wrapperHost {
+   margin-bottom: 2rem;
+   padding-top: 2px;
+   padding-bottom: 2rem;
+   box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+   background-color: #ffffe6;
+}
+.wrapperClient {
+   margin-bottom: 2rem;
+   padding-top: 2px;
+   padding-bottom: 2rem;
+   box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+   background-color: #fff2e6;
+}
+
+.label {
+   text-align: center;
+   font-family: "Indie Flower", cursive;
+   font-size: 2rem;
+   margin: 1.5rem 0;
+}
+
+.link {
+   display: block;
+   height: 10rem;
+   width: 10rem;
+   border-radius: 5rem;
+   box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
+      rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+}
+
+.link:hover {
+   scale: 1.1;
+}
+
+.linkWrapper {
+   display: flex;
+   justify-content: center;
+}
+
+#createAcc {
+   background: url(./images/account.png) center no-repeat;
+   background-size: 10rem;
+}
+
+#chooseCar {
+   background: url(./images/car.png) center no-repeat;
+   background-size: 10rem;
+}
+
+#contactHost {
+   background: url(./images/deal.jpg) center no-repeat;
+   background-size: 10rem;
+}
+
+/*Delete this */
+#becomeHost {
+   background: url(../../HostHome/assets/images/host.png) center no-repeat;
+   background-size: 10rem;
+}
+
+#setupOffer {
+   background: url(../../HostHome/assets/images/setup-offer.jpg) center
+      no-repeat;
+   background-size: 10rem;
+}

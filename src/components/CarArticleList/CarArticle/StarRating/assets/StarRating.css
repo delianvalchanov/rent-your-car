@@ -1,0 +1,12 @@
+.starList {
+   display: flex;
+   align-items: center;
+}
+
+.starList:hover {
+   cursor: pointer;
+}
+
+.yellowStar {
+   fill: yellow;
+}

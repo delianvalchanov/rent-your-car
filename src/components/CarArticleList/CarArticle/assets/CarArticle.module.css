@@ -1,0 +1,50 @@
+.wrapper {
+   height: auto;
+   width: 20rem;
+   border-radius: 2rem;
+   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+   margin: 0.5rem;
+   overflow: hidden;
+}
+
+.wrapper img {
+   height: 10rem;
+   width: 100%;
+   object-fit: cover;
+   box-sizing: border-box;
+}
+
+.carData,
+.buttonList,
+.carModel {
+   padding: 0.5rem;
+}
+
+.carData {
+   font-size: 1rem;
+   font-style: italic;
+   font-weight: 500;
+   justify-content: center;
+}
+
+.carModel {
+   font-family: "Indie Flower", cursive;
+   text-align: left;
+   font-size: 1.4rem;
+}
+
+.price {
+   font-size: 1.3rem;
+   font-weight: 600;
+}
+
+.buttonList {
+   display: flex;
+   justify-content: center;
+}
+
+.button {
+   margin: 0 0.5rem;
+   font-weight: 600;
+   border-width: 2px;
+}

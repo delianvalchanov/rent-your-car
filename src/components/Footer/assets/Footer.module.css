@@ -1,0 +1,31 @@
+.wrapper {
+   margin-top: 6rem;
+   padding: 3rem 0;
+   background-color: #003d99;
+}
+
+.brand {
+   background: url(./images/footer-brand.jpg) center no-repeat;
+   display: inline-block;
+   background-size: 15rem;
+   height: 4rem;
+   width: 15rem;
+}
+
+.brandContainer {
+   display: flex;
+   align-items: center;
+   padding-left: 5rem;
+}
+
+.contacts {
+   display: flex;
+   justify-content: flex-end;
+   font-family: "Indie Flower", cursive;
+   color: white;
+}
+
+.telNum {
+   font-size: 1.3rem;
+   color: white;
+}
