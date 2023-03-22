@@ -1,5 +1,6 @@
 import HeaderCSS from "./assets/Header.module.css";
 
+import { Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar'
 import { Dropdown, Nav } from "react-bootstrap";
 import DropdownToggle from "react-bootstrap/esm/DropdownToggle";
@@ -12,16 +13,16 @@ export const Header = () => {
 
          <Navbar className={HeaderCSS.wrapper} expand='lg'>
 
-            <Navbar.Brand className={HeaderCSS.logo} href="/"></Navbar.Brand>
+            <Navbar.Brand className={HeaderCSS.logo}></Navbar.Brand>
             <Navbar.Toggle aria-controls="main-navbar-nav" />
 
 
             <Navbar.Collapse id="main-navbar-nav">
                <Nav className='me-auto' activeKey="/">
-                  <Nav.Link className={HeaderCSS.item} href="/">Home</Nav.Link>
-                  <Nav.Link className={HeaderCSS.item} href="/">Catalog</Nav.Link>
-                  <Nav.Link className={HeaderCSS.item} href="/">Hosts</Nav.Link>
-                  <Nav.Link className={HeaderCSS.item} href="/">About Us</Nav.Link>
+                  <Link className={HeaderCSS.item} to="/">Home</Link>
+                  <Link className={HeaderCSS.item} to="/catalog">Catalog</Link>
+                  <Link className={HeaderCSS.item} to="/hosts">Hosts</Link>
+                  <Link className={HeaderCSS.item} to="/about">About Us</Link>
                </Nav>
             </Navbar.Collapse>
 
@@ -29,12 +30,25 @@ export const Header = () => {
                <DropdownToggle className={HeaderCSS.toggle} />
 
                <DropdownMenu>
-                  <DropdownItem>Log in</DropdownItem>
-                  <DropdownItem>Register</DropdownItem>
+                  <DropdownItem>
+                     <Link to="/login">Log in</Link>
+                  </DropdownItem>
+
+                  <DropdownItem>
+                     <Link to="/register">Register</Link>
+                  </DropdownItem>
+
                   <Dropdown.Divider />
-                  <DropdownItem>Become a Host</DropdownItem>
+
+                  <DropdownItem>
+                     <Link to="/becomehost">Become a host</Link>
+                  </DropdownItem>
+
                   <Dropdown.Divider />
-                  <DropdownItem>Logout</DropdownItem>
+
+                  <DropdownItem>
+                     <Link to="/">Logout</Link>
+                  </DropdownItem>
                </DropdownMenu>
             </Dropdown>
 
