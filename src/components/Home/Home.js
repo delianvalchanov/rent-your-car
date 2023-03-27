@@ -4,7 +4,7 @@ import { HostHome } from "./HostHome"
 import { WelcomingSection } from "./WelcomingSection"
 
 
-export const HomeContent = () => {
+export const Home = () => {
     return (
         <>
             <WelcomingSection />
