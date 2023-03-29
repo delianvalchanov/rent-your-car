@@ -1,15 +1,17 @@
 import { Button } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 import CarArticleCSS from "./assets/CarArticle.module.css";
 import { StarRating } from "./StarRating/StarRating";
 
 export const CarArticle = ({
-
+   _id,
    carImage,
    model,
-   fuel,
    power,
-   seatCapacity,
+   price,
+   fuel,
+   bodyType,
    luggageCapacity
 }) => {
    return (
@@ -19,27 +21,27 @@ export const CarArticle = ({
             alt="car picture"
          />
          <div className="row">
-            <div className="col-8">
-               <a href="/">
+            <div className="col-7">
+               <Link to={`/catalog/${_id}`}>
                   <h4 className={CarArticleCSS.carModel}>{model}</h4>
-               </a>
+               </Link>
             </div>
-            <div className={`col-4 ${CarArticleCSS.price}`}>40$/day</div>
+            <div className={`col-5 ${CarArticleCSS.price}`}>{price}$/day</div>
          </div>
 
          <div className={`row ${CarArticleCSS.carData}`}>
-            <div className="col-6"><span>Host: Georgi</span></div>
-            <div className="col-6"> <StarRating /></div>
+            <div className="col-7"><span>Host: Georgi</span></div>
+            <div className="col-5"> <StarRating /></div>
          </div>
 
          <div className={`row ${CarArticleCSS.carData}`}>
-            <span className={`col-6 ${CarArticleCSS.carEngine}`}>Fuel: {fuel}</span>
-            <span className={`col-6 ${CarArticleCSS.carPower}`}>Power: {power}hp</span>
-            <span className={`col-6 ${CarArticleCSS.carSeatCapacity}`}>Passengers: {seatCapacity}</span>
-            <span className={`col-6 ${CarArticleCSS.carLuggageCapacity}`}>Boot capacity: {luggageCapacity}L</span>
+            <span className={`col-7 ${CarArticleCSS.carEngine}`}>Fuel: {fuel}</span>
+            <span className={`col-5 ${CarArticleCSS.carPower}`}>Power: {power}hp</span>
+            <span className={`col-7 ${CarArticleCSS.carSeatCapacity}`}>Body type: {bodyType}</span>
+            <span className={`col-5 ${CarArticleCSS.carLuggageCapacity}`}>Boot capacity: {luggageCapacity}L</span>
          </div>
          <div className={CarArticleCSS.buttonList}>
-            <Button variant="outline-info" className={CarArticleCSS.button}>Details</Button>
+            <Link to={`/catalog/${_id}`}><Button variant="outline-info" className={CarArticleCSS.button}>Details</Button></Link>
             <Button variant="outline-success" className={CarArticleCSS.button}>Drive!</Button>
          </div>
       </div>

@@ -1,48 +1,29 @@
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import HostsCSS from "./assets/Hosts.module.css"
 import CarArticleCSS from "../Catalog/CarArticle/assets/CarArticle.module.css";
+import { CarArticle } from "../Catalog/CarArticle";
+import CatalogCSS from "../Catalog/assets/Catalog.module.css"
+import { GarageArticle } from "./GarageArticle";
 
-import { StarRating } from "../Catalog/CarArticle/StarRating/StarRating";
 
-export const Hosts = (
+
+export const Hosts = ({
+    articles,
+}
 ) => {
     return (
         <div className={HostsCSS.wrapperPage}>
+            <div className={HostsCSS.heading}>
+                <h2>Your garage</h2>
+                <Link to="/hosts/create"><Button variant="outline-primary">Add new</Button></Link>
+            </div>
 
-            <article>
-                <h2>Your garage:</h2>
-                <div className={CarArticleCSS.wrapper}>
-                    <img
-                        src={require(`../Catalog/CarArticle/assets/images/mercedes-c-w203.jpg`)}
-                        alt="car picture"
-                    />
-                    <div className="row">
-                        <div className="col-8">
-                            <a href="/">
-                                <h4 className={CarArticleCSS.carModel}>Mercedes C-classe</h4>
-                            </a>
-                        </div>
-                        <div className={`col-4 ${CarArticleCSS.price}`}>40$/day</div>
-                    </div>
+            <div className={`row ${HostsCSS.wrapper}`}>
 
-                    <div className={`row ${CarArticleCSS.carData}`}>
-                        <div className="col-6"><span>Host: Georgi</span></div>
-                        <div className="col-6"> <StarRating /></div>
-                    </div>
-
-                    <div className={`row ${CarArticleCSS.carData}`}>
-                        <span className={`col-6 ${CarArticleCSS.carEngine}`}>Engine: 2.2CDI</span>
-                        <span className={`col-6 ${CarArticleCSS.carPower}`}>Power: 150hp</span>
-                        <span className={`col-6 ${CarArticleCSS.carSeatCapacity}`}>Passengers: 4</span>
-                        <span className={`col-6 ${CarArticleCSS.carLuggageCapacity}`}>Luggage: 450l</span>
-                    </div>
-                    <div className={CarArticleCSS.buttonList}>
-                        <Button variant="outline-success" className={CarArticleCSS.button}>Edit</Button>
-                        <Button variant="outline-danger" className={CarArticleCSS.button}>Delete</Button>
-                    </div>
-                </div>
-            </article>
+                {articles.map(x => <div className={`col-lg-4 ${CatalogCSS.article}`}> <GarageArticle key={x._id} {...x} /> </div>)}
+            </div>
 
             <div>
                 <h2>All hosts</h2>

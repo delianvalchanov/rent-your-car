@@ -6,6 +6,7 @@ div.container {
 }
 
 .wrapper {
+   max-width: 47.5rem;
    margin-top: 4rem;
    padding: 1rem 3rem;
    border-radius: 2rem;
@@ -13,8 +14,10 @@ div.container {
 }
 
 #create label,
-#create input {
+#create input,
+#create select {
    display: block;
+   text-transform: capitalize;
 }
 
 h3 {
@@ -30,4 +33,14 @@ h3 {
    width: 20rem;
    margin-bottom: 1rem;
    padding: 5px;
+}
+
+#create select {
+   width: 20rem;
+   margin-bottom: 1rem;
+   padding: 6.5px;
+}
+
+#create textarea {
+   width: 100%;
 }

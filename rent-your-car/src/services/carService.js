@@ -10,6 +10,13 @@ export const getAll = async () => {
 
 }
 
+export const getOne = async (articleId) => {
+    const result = await request.get(`${baseUrl}/${articleId}`);
+    console.log(result);
+
+    return result;
+}
+
 export const create = async (carData) => {
     const result = await request.post(baseUrl, carData)
 

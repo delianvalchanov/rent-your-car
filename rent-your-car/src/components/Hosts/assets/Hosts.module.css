@@ -1,5 +1,14 @@
 .wrapperPage {
-   margin: 4rem;
+   margin: 3rem 4rem;
+}
+
+.wrapper {
+   margin: 2rem 0;
+}
+
+.heading {
+   display: flex;
+   justify-content: space-between;
 }
 
 .table {
