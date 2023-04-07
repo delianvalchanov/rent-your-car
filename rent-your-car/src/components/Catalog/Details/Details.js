@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 
-import * as carService from "../../../services/carService"
+import { carServiceFactory } from '../../../services/carService';
+import { useAuthService } from "../../../hooks/useAuthService";
+import { AuthContext } from '../../../contexts/AuthContext';
 import DetailsCSS from "./Details.module.css"
 
 export const Details = () => {
 
     const { articleId } = useParams();
     const [car, setCar] = useState({});
+    const carService = useAuthService(carServiceFactory)
 
     useEffect(() => {
         carService.getOne(articleId)

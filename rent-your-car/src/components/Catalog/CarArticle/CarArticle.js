@@ -1,5 +1,7 @@
 import { Button } from "react-bootstrap";
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from "../../../contexts/AuthContext";
 
 import CarArticleCSS from "./assets/CarArticle.module.css";
 import { StarRating } from "./StarRating/StarRating";
@@ -14,6 +16,8 @@ export const CarArticle = ({
    bodyType,
    luggageCapacity
 }) => {
+   const { isAuthenticated } = useContext(AuthContext)
+
    return (
       <div className={CarArticleCSS.wrapper}>
          <img
@@ -40,10 +44,13 @@ export const CarArticle = ({
             <span className={`col-7 ${CarArticleCSS.carSeatCapacity}`}>Body type: {bodyType}</span>
             <span className={`col-5 ${CarArticleCSS.carLuggageCapacity}`}>Boot capacity: {luggageCapacity}L</span>
          </div>
-         <div className={CarArticleCSS.buttonList}>
-            <Link to={`/catalog/${_id}`}><Button variant="outline-info" className={CarArticleCSS.button}>Details</Button></Link>
-            <Button variant="outline-success" className={CarArticleCSS.button}>Drive!</Button>
-         </div>
+         {isAuthenticated && (
+            <div className={CarArticleCSS.buttonList}>
+               <Link to={`/catalog/${_id}`}><Button variant="outline-info" className={CarArticleCSS.button}>Details</Button></Link>
+               <Button variant="outline-success" className={CarArticleCSS.button}>Drive!</Button>
+            </div>
+         )}
+
       </div>
 
 

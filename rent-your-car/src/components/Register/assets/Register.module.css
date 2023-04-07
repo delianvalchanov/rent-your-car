@@ -1,0 +1,30 @@
+.wrapper {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.wrapper label,
+.wrapper input {
+   display: block;
+}
+
+#register {
+   max-width: 47.5rem;
+   margin-top: 4rem;
+   padding: 1rem 3rem;
+   border-radius: 2rem;
+   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+#username,
+#confirmPassword,
+#email,
+#password {
+   padding: 6.5px;
+   width: 100%;
+}
+
+.submit {
+   margin: 0.5rem 0;
+}
