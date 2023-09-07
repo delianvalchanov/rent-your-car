@@ -6,13 +6,20 @@ import { useForm } from "../../hooks/useForm"
 import { AuthContext } from "../../contexts/AuthContext"
 import RegisterCSS from "./assets/Register.module.css"
 
+const RegisterFormKeys = {
+    Username: 'username',
+    Email: 'email',
+    Password: 'password',
+    ConfirmPassword: 'confirmPassword'
+}
+
 export const Register = () => {
     const { onRegisterSubmit } = useContext(AuthContext);
     const { values, changeHandler, onSubmit } = useForm({
-        username: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
+        [RegisterFormKeys.Username]: '',
+        [RegisterFormKeys.Email]: '',
+        [RegisterFormKeys.Password]: '',
+        [RegisterFormKeys.ConfirmPassword]: '',
     }, onRegisterSubmit)
 
     return (
@@ -25,7 +32,7 @@ export const Register = () => {
                     <input type="text"
                         id={RegisterCSS['username']}
                         name="username"
-                        value={values.username}
+                        value={values[RegisterFormKeys.Username]}
                         onChange={changeHandler}
                     />
 
@@ -34,7 +41,7 @@ export const Register = () => {
                         id={RegisterCSS['email']}
                         name="email"
                         placeholder="peter@gmail.com"
-                        value={values.email}
+                        value={values[RegisterFormKeys.Email]}
                         onChange={changeHandler}
                     />
 
@@ -42,7 +49,7 @@ export const Register = () => {
                     <input type="password"
                         id={RegisterCSS['password']}
                         name="password"
-                        value={values.password}
+                        value={values[RegisterFormKeys.Password]}
                         onChange={changeHandler}
                     />
 
@@ -50,7 +57,7 @@ export const Register = () => {
                     <input type="password"
                         id={RegisterCSS['confirmPassword']}
                         name="confirmPassword"
-                        value={values.confirmPassword}
+                        value={values[RegisterFormKeys.ConfirmPassword]}
                         onChange={changeHandler}
                     />
 

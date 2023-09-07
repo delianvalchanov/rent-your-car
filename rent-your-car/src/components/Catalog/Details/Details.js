@@ -1,16 +1,19 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useContext, useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom"
+import { Button } from 'react-bootstrap';
 
 import { carServiceFactory } from '../../../services/carService';
 import { useAuthService } from "../../../hooks/useAuthService";
-import { AuthContext } from '../../../contexts/AuthContext';
 import DetailsCSS from "./Details.module.css"
+import { AuthContext } from "../../../contexts/AuthContext";
 
-export const Details = () => {
-
+export const Details = ({
+    onDelete,
+}) => {
+    const { userId } = useContext(AuthContext)
+    const carService = useAuthService(carServiceFactory)
     const { articleId } = useParams();
     const [car, setCar] = useState({});
-    const carService = useAuthService(carServiceFactory)
 
     useEffect(() => {
         carService.getOne(articleId)
@@ -39,6 +42,12 @@ export const Details = () => {
                     <p>Why should you choose this vehicle: {car.description}</p>
                 </div>
             </div>
+            {userId === car._ownerId && (
+                <div>
+                    <Link to={`/catalog/${articleId}/edit`}>Edit</Link>
+                    <Button onClick={() => onDelete(car._id)} variant="outline-danger">Delete</Button>
+                </div>
+            )}
         </div>
     )
 }

@@ -23,13 +23,7 @@ export const Header = () => {
                <Nav className='me-auto' activeKey="/">
                   <Link className={HeaderCSS.item} to="/">Home</Link>
                   <Link className={HeaderCSS.item} to="/catalog">Catalog</Link>
-
-                  {isAuthenticated && (
-                     <Link className={HeaderCSS.item} to="/hosts">Hosts</Link>
-                  )}
-
                   <Link className={HeaderCSS.item} to="/about">About Us</Link>
-
                </Nav>
             </Navbar.Collapse>
 
@@ -40,8 +34,6 @@ export const Header = () => {
                      Hello, Georgi Dimitrov!
                   </span>
                )}
-
-
                <DropdownToggle className={HeaderCSS.toggle} />
                <DropdownMenu>
                   {!isAuthenticated && (
@@ -58,11 +50,6 @@ export const Header = () => {
 
                   {isAuthenticated && (
                      <>
-                        <DropdownItem>
-                           <Link to="/becomehost">Become a host</Link>
-                        </DropdownItem>
-
-                        <Dropdown.Divider />
 
                         <DropdownItem>
                            <Link to="/logout">Logout</Link>

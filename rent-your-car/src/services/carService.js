@@ -24,10 +24,20 @@ export const carServiceFactory = (token) => {
         return result;
     }
 
+    const edit = async (articleId, carData) => {
+        const result = await request.put(`${baseUrl}/${articleId}`, carData)
+
+        return result;
+    }
+
+    const deleteGame = (articleId) => request.delete(`${baseUrl}/${articleId}`);
+
     return {
         getAll,
         getOne,
-        create
+        create,
+        edit,
+        delete: deleteGame
     }
 }
 

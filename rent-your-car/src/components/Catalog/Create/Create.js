@@ -1,8 +1,7 @@
 import CreateCSS from "./assets/Create.module.css"
-import { useForm } from "../../../hooks/useForm";
-
-import { useState } from "react";
 import { Button } from "react-bootstrap";
+
+import { useForm } from "../../../hooks/useForm";
 
 export const Create = (
     { onCreateArticle },
@@ -16,8 +15,8 @@ export const Create = (
         year: '',
         fuel: 'petrol',
         fuelConsuption: '',
-        power: 0,
-        luggageCapacity: 0,
+        power: '',
+        luggageCapacity: '',
         bodyType: 'sedan',
         description: ''
     }, onCreateArticle)
@@ -77,4 +76,3 @@ export const Create = (
 
     );
 };
-

@@ -1,6 +1,9 @@
 import { Button } from "react-bootstrap";
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+
 import { AuthContext } from "../../../contexts/AuthContext";
 
 import CarArticleCSS from "./assets/CarArticle.module.css";
@@ -17,6 +20,11 @@ export const CarArticle = ({
    luggageCapacity
 }) => {
    const { isAuthenticated } = useContext(AuthContext)
+   const [show, setShow] = useState(false);
+
+   const handleClose = () => setShow(false);
+   const handleShow = () => setShow(true);
+
 
    return (
       <div className={CarArticleCSS.wrapper}>
@@ -44,13 +52,46 @@ export const CarArticle = ({
             <span className={`col-7 ${CarArticleCSS.carSeatCapacity}`}>Body type: {bodyType}</span>
             <span className={`col-5 ${CarArticleCSS.carLuggageCapacity}`}>Boot capacity: {luggageCapacity}L</span>
          </div>
-         {isAuthenticated && (
-            <div className={CarArticleCSS.buttonList}>
-               <Link to={`/catalog/${_id}`}><Button variant="outline-info" className={CarArticleCSS.button}>Details</Button></Link>
-               <Button variant="outline-success" className={CarArticleCSS.button}>Drive!</Button>
-            </div>
-         )}
 
+         <div className={CarArticleCSS.buttonList}>
+            <Link to={`/catalog/${_id}`}><Button variant="outline-info" className={CarArticleCSS.button}>Details</Button></Link>
+            {isAuthenticated && (
+               <Button onClick={handleShow} variant="outline-success" className={CarArticleCSS.button}>Drive!</Button>
+            )}
+         </div>
+
+         <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+               <Modal.Title>Modal heading</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+               <Form>
+                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                     <Form.Label>Email address</Form.Label>
+                     <Form.Control
+                        type="email"
+                        placeholder="name@example.com"
+                        autoFocus
+                     />
+                  </Form.Group>
+                  <Form.Group
+                     className="mb-3"
+                     controlId="exampleForm.ControlTextarea1"
+                  >
+                     <Form.Label>Example textarea</Form.Label>
+                     <Form.Control as="textarea" rows={3} />
+                  </Form.Group>
+               </Form>
+            </Modal.Body>
+            <Modal.Footer>
+               <Button variant="secondary" onClick={handleClose}>
+                  Close
+               </Button>
+               <Button variant="primary" onClick={handleClose}>
+                  Save Changes
+               </Button>
+            </Modal.Footer>
+         </Modal>
       </div>
 
 

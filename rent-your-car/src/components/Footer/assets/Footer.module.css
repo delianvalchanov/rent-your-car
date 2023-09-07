@@ -1,11 +1,11 @@
 .wrapper {
    margin-top: 6rem;
    padding: 3rem 0;
-   background-color: #003d99;
+   background-color: #35d0ba;
 }
 
 .brand {
-   background: url(./images/footer-brand.jpg) center no-repeat;
+   background: url(./images/footer-brand.png) center no-repeat;
    display: inline-block;
    background-size: 15rem;
    height: 4rem;

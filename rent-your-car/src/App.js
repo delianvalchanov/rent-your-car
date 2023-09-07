@@ -1,28 +1,22 @@
 import { useEffect, useState } from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route, useNavigate } from "react-router-dom";
-import AppCSS from './App.module.css'
 
 import { carServiceFactory } from './services/carService';
 import { authServiceFactory } from './services/authService';
 import { AuthContext } from './contexts/AuthContext';
-import { useAuthService } from './hooks/useAuthService';
 
 import { Header } from "./components/Header"
 import { Home } from "./components/Home"
 import { Catalog } from "./components/Catalog"
 import { Details } from "./components/Catalog/Details"
-import { Hosts } from "./components/Hosts"
 import { Footer } from "./components/Footer"
 import { About } from './components/About/About';
 import { Login } from './components/Login'
 import { Register } from './components/Register';
 import { Logout } from './components/Logout';
-import { BecomeHost } from './components/Hosts/BecomeHost'
-import { Edit } from './components/Hosts/Edit';
-import { Create } from './components/Hosts/Create';
-
-
+import { Edit } from './components/Catalog/Details/Edit';
+import { Create } from './components/Catalog/Create';
 
 function App() {
    const navigate = useNavigate();
@@ -43,7 +37,15 @@ function App() {
 
       setArticles(state => [...state, newArticle])
 
-      navigate('/hosts')
+      navigate('/catalog')
+   }
+
+   const onEdit = async (values) => {
+      const result = await carService.edit(values._id, values)
+
+      setArticles(state => state.map(x => x._id === values._id ? result : x))
+
+      navigate(`/catalog/${values._id}`);
    }
 
    const onLoginSubmit = async (data) => {
@@ -65,7 +67,7 @@ function App() {
       }
 
       try {
-         const result = await authServiceFactory.register(registerData)
+         const result = await authService.register(registerData)
          setAuth(result)
 
          navigate('/catalog')
@@ -79,6 +81,7 @@ function App() {
 
       setAuth({});
    };
+
 
    const context = {
       onLoginSubmit,
@@ -98,15 +101,13 @@ function App() {
                <Routes>
                   <Route path='/' element={<Home />} />
                   <Route path='/catalog' element={<Catalog articles={articles} />} />
+                  <Route path='/catalog/create' element={<Create onCreateArticle={onCreateArticle} />} />
                   <Route path='/catalog/:articleId' element={<Details />} />
-                  <Route path='/hosts' element={<Hosts articles={articles} />} />
+                  <Route path='/catalog/:articleId/edit' element={<Edit onEdit={onEdit} />} />
                   <Route path='/about' element={<About />} />
                   <Route path='/login' element={<Login />} />
                   <Route path='/register' element={<Register />} />
                   <Route path='/logout' element={<Logout />} />
-                  <Route path='/hosts/becomehost' element={<BecomeHost />} />
-                  <Route path='/hosts/edit' element={<Edit />} />
-                  <Route path='/hosts/create' element={<Create onCreateArticle={onCreateArticle} />} />
                </Routes>
             </main>
             <Footer />
