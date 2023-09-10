@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route, useNavigate } from "react-router-dom";
 import AppCSS from './App.module.css';
 
 import { carServiceFactory } from './services/carService';
-import { authServiceFactory } from './services/authService';
-import { AuthContext } from './contexts/AuthContext';
+import { AuthContext, AuthProvider } from './contexts/AuthContext';
 
 import { Header } from "./components/Header"
 import { Home } from "./components/Home"
@@ -22,9 +21,7 @@ import { Create } from './components/Catalog/Create';
 function App() {
    const navigate = useNavigate();
    const [articles, setArticles] = useState([]);
-   const [auth, setAuth] = useState({});
-   const carService = carServiceFactory(auth.accessToken);
-   const authService = authServiceFactory(auth.accessToken)
+   const carService = carServiceFactory(); //auth.accessToken
 
    useEffect(() => {
       carService.getAll()
@@ -49,55 +46,9 @@ function App() {
       navigate(`/catalog/${values._id}`);
    }
 
-   const onLoginSubmit = async (data) => {
-      try {
-         const result = await authService.login(data)
-         setAuth(result)
-
-         navigate('/catalog')
-      } catch (error) {
-         console.log(error);
-      }
-   }
-
-   const onRegisterSubmit = async (values) => {
-      const { confirmPassword, ...registerData } = values;
-
-      if (confirmPassword !== registerData.password) {
-         return;
-      }
-
-      try {
-         const result = await authService.register(registerData)
-         setAuth(result)
-
-         navigate('/catalog')
-      } catch (error) {
-         console.log(error);
-      }
-   }
-
-   const onLogout = async () => {
-      await authService.logout();
-
-      setAuth({});
-   };
-
-
-   const context = {
-      onLoginSubmit,
-      onRegisterSubmit,
-      onLogout,
-      user: auth.user,
-      userId: auth._id,
-      token: auth.accessToken,
-      email: auth.email,
-      isAuthenticated: !!auth.accessToken
-   }
-
    return (
       <>
-         <AuthContext.Provider value={context}>
+         <AuthProvider>
             <Header />
             <main id="main">
                <Routes>
@@ -113,7 +64,7 @@ function App() {
                </Routes>
             </main>
             <Footer />
-         </AuthContext.Provider>
+         </AuthProvider>
       </>
    );
 }
