@@ -1,0 +1,47 @@
+div.container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+ }
+ 
+ .wrapper {
+    max-width: 47.5rem;
+    margin-top: 4rem;
+    padding: 1rem 3rem;
+    border-radius: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+ }
+ 
+ #edit label,
+ #edit input,
+ #edit select {
+    display: block;
+    text-transform: capitalize;
+ }
+ 
+ h3 {
+    font-family: "Indie Flower", cursive;
+    font-size: 2rem;
+ }
+ 
+ #edit label {
+    font-style: italic;
+ }
+ 
+ #edit input {
+    width: 20rem;
+    margin-bottom: 1rem;
+    padding: 5px;
+ }
+ 
+ #edit select {
+    width: 20rem;
+    margin-bottom: 1rem;
+    padding: 6.5px;
+ }
+ 
+ #edit textarea {
+    width: 100%;
+ }
+ 

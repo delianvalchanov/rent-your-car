@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route, useNavigate } from "react-router-dom";
+import AppCSS from './App.module.css';
 
 import { carServiceFactory } from './services/carService';
 import { authServiceFactory } from './services/authService';
@@ -87,6 +88,7 @@ function App() {
       onLoginSubmit,
       onRegisterSubmit,
       onLogout,
+      user: auth.user,
       userId: auth._id,
       token: auth.accessToken,
       email: auth.email,

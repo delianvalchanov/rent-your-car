@@ -12,6 +12,7 @@ import DropdownItem from "react-bootstrap/esm/DropdownItem";
 
 export const Header = () => {
    const { isAuthenticated } = useContext(AuthContext)
+   const { user } = useContext(AuthContext)
 
    return (
       <>
@@ -30,11 +31,11 @@ export const Header = () => {
             <Dropdown align="end">
 
                {isAuthenticated && (
-                  <span className="greeting">
-                     Hello, Georgi Dimitrov!
+                  <span className={HeaderCSS.greeting}>
+                     {user}
                   </span>
                )}
-               <DropdownToggle className={HeaderCSS.toggle} />
+               <DropdownToggle id={HeaderCSS.toggle} className={HeaderCSS.toggle} />
                <DropdownMenu>
                   {!isAuthenticated && (
                      <>

@@ -14,7 +14,7 @@ export const Create = (
         carImage: '',
         year: '',
         fuel: 'petrol',
-        fuelConsuption: '',
+        fuelConsumption: '',
         power: '',
         luggageCapacity: '',
         bodyType: 'sedan',

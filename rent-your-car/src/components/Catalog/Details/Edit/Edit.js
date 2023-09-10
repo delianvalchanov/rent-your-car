@@ -20,7 +20,7 @@ export const Edit = ({
         carImage: '',
         year: '',
         fuel: '',
-        fuelConsuption: '',
+        fuelConsumption: '',
         power: '',
         luggageCapacity: '',
         bodyType: '',

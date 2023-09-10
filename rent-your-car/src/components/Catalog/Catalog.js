@@ -34,7 +34,7 @@ export const Catalog = ({
         <>
             <div className={`row ${CatalogCSS.wrapper}`}>
                 {isAuthenticated && (
-                    <Link to="/catalog/create"><Button variant="outline-primary">Add new</Button></Link>
+                    <Link to="/catalog/create" className={CatalogCSS.addBtn}><Button variant="outline-primary">Add new</Button></Link>
                 )}
                 {articles.map(x => <div className={`col-lg-4 ${CatalogCSS.article}`}> <CarArticle onDelete={onDelete} key={x._id} {...x} /> </div>)}
             </div>

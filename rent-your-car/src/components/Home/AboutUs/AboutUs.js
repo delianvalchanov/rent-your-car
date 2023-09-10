@@ -1,15 +1,14 @@
-import { Container } from 'react-bootstrap'
-
+import { Link } from "react-router-dom"
 import AboutUsCSS from "./assets/AboutUs.module.css"
 
 export const AboutUs = () => {
     return (
         <>
-            <div className={AboutUsCSS.wrapper}>
+            <div id='ourMission' className={AboutUsCSS.wrapper}>
                 <h2 className={AboutUsCSS.heading}>Our Mission</h2>
                 <div className={`row ${AboutUsCSS.articleWrapper}`}>
                     <article className={`col-lg-6 ${AboutUsCSS.imageWrapper}`}>
-                        <a href=""><img className={AboutUsCSS.image} src={require('./assets/images/aboutus2.jpg')} alt="" /></a>
+                        <Link to={'/about'}><img className={AboutUsCSS.image} src={require('./assets/images/aboutus2.jpg')} alt="" /></Link>
                     </article>
                     <article className={`col-lg-6 ${AboutUsCSS.descWrapper}`}>
                         <h3 className={AboutUsCSS.descHeading}>Create our shared automotive comunity</h3>
@@ -22,7 +21,7 @@ export const AboutUs = () => {
                 </div>
                 <div className={`row ${AboutUsCSS.articleWrapper}`}>
                     <div className={`col-lg-6 ${AboutUsCSS.imageWrapper}`}>
-                        <a href=""><img className={AboutUsCSS.image} src={require('./assets/images/aboutus1.jpg')} alt="" /></a>
+                        <Link to={'/about'}><img className={AboutUsCSS.image} src={require('./assets/images/aboutus1.jpg')} alt="" /></Link>
                     </div>
                     <div className={`col-lg-6 ${AboutUsCSS.descWrapper}`}>
                         <h3 className={AboutUsCSS.descHeading}>Create our shared automotive comunity</h3>
@@ -35,7 +34,7 @@ export const AboutUs = () => {
                 </div>
                 <div className={`row ${AboutUsCSS.articleWrapper}`}>
                     <div className={`col-lg-6 ${AboutUsCSS.imageWrapper}`}>
-                        <a href=""><img className={AboutUsCSS.image} src={require('./assets/images/aboutus3.avif')} alt="" /></a>
+                        <Link to={'/about'}><img className={AboutUsCSS.image} src={require('./assets/images/aboutus3.avif')} alt="" /></Link>
                     </div>
                     <div className={`col-lg-6 ${AboutUsCSS.descWrapper}`}>
                         <h3 className={AboutUsCSS.descHeading}>Create our shared automotive comunity</h3>

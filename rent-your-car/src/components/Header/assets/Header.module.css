@@ -29,6 +29,13 @@
    background-color: #f5f9ff;
 }
 
+#toggle {
+   background-color: transparent;
+   color: inherit;
+   border-color: transparent;
+   transform: scale(1.2);
+}
+
 .toggle {
    background: url(./images/circle-user-regular.svg) center no-repeat;
    background-size: 1.5rem;
@@ -41,9 +48,9 @@
    content: none;
 }
 
-.toggle:hover,
-.toggle:focus,
-.toggle:active {
-   scale: 1.2;
-   background-color: inherit;
+.greeting {
+   font-family: "Indie Flower", cursive;
+   font-size: 1.5rem;
+   margin-right: 1rem;
 }
+

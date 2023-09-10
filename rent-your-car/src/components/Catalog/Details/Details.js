@@ -36,7 +36,7 @@ export const Details = ({
                     <p>Vehicle location: {car.location}</p>
                     <p>Body type: {car.bodyType}</p>
                     <p>Fuel type: {car.fuel}</p>
-                    <p>Fuel consumption: {car.fuelConsumtion}L/100km</p>
+                    <p>Fuel consumption: {car.fuelConsumption}L/100km</p>
                     <p>Engine power: {car.power}hp</p>
                     <p>Luggage capacity: {car.luggageCapacity}L</p>
                     <p>Why should you choose this vehicle: {car.description}</p>
@@ -44,7 +44,7 @@ export const Details = ({
             </div>
             {userId === car._ownerId && (
                 <div>
-                    <Link to={`/catalog/${articleId}/edit`}>Edit</Link>
+                    <Link to={`/catalog/${articleId}/edit`}><Button variant="outline-info">Edit</Button></Link>
                     <Button onClick={() => onDelete(car._id)} variant="outline-danger">Delete</Button>
                 </div>
             )}

@@ -1,31 +1,32 @@
 .wrapper {
-   margin-top: 6rem;
+   margin-top: 3rem;
    padding: 3rem 0;
-   background-color: #35d0ba;
+   background-color: transparent;
 }
 
 .brand {
    background: url(./images/footer-brand.png) center no-repeat;
    display: inline-block;
-   background-size: 15rem;
-   height: 4rem;
-   width: 15rem;
+   background-size: 12rem;
+   height: 6.5rem;
+   width: 16rem;
 }
 
 .brandContainer {
    display: flex;
    align-items: center;
-   padding-left: 3rem;
+   padding-left: 6rem;
 }
 
 .contacts {
    display: flex;
    justify-content: flex-end;
+   padding-right: 3rem;
    font-family: "Indie Flower", cursive;
-   color: white;
+   color: black;
 }
 
 .telNum {
    font-size: 1.3rem;
-   color: white;
+   color: black;
 }

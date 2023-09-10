@@ -9,11 +9,15 @@
 }
 
 .image {
-   width: 45rem;
+   width: 30rem;
    height: auto;
 }
 
 .carInfo {
    font-size: 1rem;
    font-weight: 600;
+}
+
+Link {
+   margin-right: 1rem;
 }

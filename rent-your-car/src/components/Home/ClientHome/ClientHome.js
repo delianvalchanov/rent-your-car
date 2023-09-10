@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 import UserHomeCSS from "./assets/UserHome.module.css";
 
 
 export const ClientHome = () => {
     return (
-        <div className={UserHomeCSS.wrapperClient}>
+        <div id="clientJourney" className={UserHomeCSS.wrapperClient}>
             <h2 className={UserHomeCSS.heading}>Your journey as a client</h2>
             <div className="row">
                 <div className="col-lg-4">
@@ -11,10 +12,10 @@ export const ClientHome = () => {
                         Log in / Create your account
                     </h3>
                     <div className={UserHomeCSS.linkWrapper}>
-                        <a className={UserHomeCSS.link}
-                            id={UserHomeCSS['createAcc']}
-                            href="/">
-                        </a>
+                        <Link to={'/login'}
+                            className={UserHomeCSS.link}
+                            id={UserHomeCSS['createAcc']}>
+                        </Link>
                     </div>
                 </div>
                 <div className="col-lg-4">
@@ -22,8 +23,8 @@ export const ClientHome = () => {
                         Choose your ride
                     </h3>
                     <div className={UserHomeCSS.linkWrapper}>
-                        <a className={UserHomeCSS.link} id={UserHomeCSS['chooseCar']} href="/">
-                        </a>
+                        <Link to={'/catalog'} className={UserHomeCSS.link} id={UserHomeCSS['chooseCar']}>
+                        </Link>
                     </div>
                 </div>
                 <div className="col-lg-4">
@@ -31,8 +32,8 @@ export const ClientHome = () => {
                         Contact the host
                     </h3>
                     <div className={UserHomeCSS.linkWrapper}>
-                        <a className={UserHomeCSS.link} id={UserHomeCSS['contactHost']} href="/">
-                        </a>
+                        <Link to={'/catalog'} className={UserHomeCSS.link} id={UserHomeCSS['contactHost']}>
+                        </Link>
                     </div>
                 </div>
             </div>
