@@ -12,7 +12,7 @@ export const useLocalStorage = (key, initialValue) => {
             setState(persistedState);
         }
 
-    }, []);
+    }, [key]);
 
     const setLocalStorageState = (value) => {
         setState(value);

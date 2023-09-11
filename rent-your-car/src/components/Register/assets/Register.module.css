@@ -28,3 +28,17 @@
 .submit {
    margin: 0.5rem 0;
 }
+
+.field {
+   font-style: italic;
+   opacity: .5;
+}
+
+#pathToLogin {
+   color: red;
+   opacity: 1;
+   font-weight: bold;
+}
+#pathToLogin:hover{
+   opacity: 1;
+}

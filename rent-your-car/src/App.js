@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route, useNavigate } from "react-router-dom";
 import AppCSS from './App.module.css';
 
 import { carServiceFactory } from './services/carService';
-import { AuthContext, AuthProvider } from './contexts/AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
 
 import { Header } from "./components/Header"
 import { Home } from "./components/Home"
@@ -28,7 +28,7 @@ function App() {
          .then(result => {
             setArticles(result)
          })
-   }, [])
+   }, [carService])
 
    const onCreateArticle = async (data) => {
       const newArticle = await carService.create(data);

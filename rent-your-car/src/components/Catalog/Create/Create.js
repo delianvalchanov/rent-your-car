@@ -1,7 +1,7 @@
 import CreateCSS from "./assets/Create.module.css"
 import { Button } from "react-bootstrap";
 
-import { useForm } from "../../../hooks/useForm";
+import { useForm } from "../../../hooks/useControlledForm";
 
 export const Create = (
     { onCreateArticle },

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import { AuthContext } from '../../contexts/AuthContext'
 import LoginCSS from './assets/Login.module.css'
-import { useForm } from '../../hooks/useForm'
+import { useForm } from '../../hooks/useControlledForm'
 
 const LoginFormKeys = {
     Email: 'email',
@@ -13,7 +13,7 @@ const LoginFormKeys = {
 
 export const Login = () => {
     const { onLoginSubmit } = useContext(AuthContext)
-    const { values, changeHandler, onSubmit } = useForm({
+    const { values, errors, changeHandler, onSubmit } = useForm({
         [LoginFormKeys.Email]: '',
         [LoginFormKeys.Password]: '',
     }, onLoginSubmit)
@@ -24,24 +24,30 @@ export const Login = () => {
                 <div className="container">
                     <h2>Login</h2>
 
-                    <label htmlFor="email">Email: </label>
-                    <input
-                        type="email"
-                        id={LoginCSS['email']}
-                        name={LoginFormKeys.Email}
-                        placeholder="peter@gmail.com"
-                        value={values[LoginFormKeys.Email]}
-                        onChange={changeHandler}
-                    />
+                    <formfield>
+                        <label htmlFor="email">Email: </label>
+                        <input
+                            type="email"
+                            id={LoginCSS['email']}
+                            name={LoginFormKeys.Email}
+                            placeholder="peter@gmail.com"
+                            value={values[LoginFormKeys.Email]}
+                            onChange={changeHandler}
+                        />
+                        <p>{errors.email}</p>
+                    </formfield>
 
-                    <label htmlFor="login-pass">Password: </label>
-                    <input
-                        type="password"
-                        id={LoginCSS['password']}
-                        name={LoginFormKeys.Password}
-                        value={values[LoginFormKeys.Password]}
-                        onChange={changeHandler}
-                    />
+                    <formfield>
+                        <label htmlFor="login-pass">Password: </label>
+                        <input
+                            type="password"
+                            id={LoginCSS['password']}
+                            name={LoginFormKeys.Password}
+                            value={values[LoginFormKeys.Password]}
+                            onChange={changeHandler}
+                        />
+                        <p>{errors.password}</p>
+                    </formfield>
 
                     <Button type="submit" className={LoginCSS.submit} value="Submit"> Login</Button>
 

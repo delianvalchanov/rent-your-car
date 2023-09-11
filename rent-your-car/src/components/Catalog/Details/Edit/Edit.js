@@ -1,4 +1,4 @@
-import { useForm } from "../../../../hooks/useForm";
+import { useForm } from "../../../../hooks/useControlledForm";
 import { useParams } from "react-router-dom";
 import EditCSS from "./assets/Edit.module.css"
 
