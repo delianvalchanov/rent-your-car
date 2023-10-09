@@ -13,11 +13,9 @@ export const CarArticle = ({
    _id,
    carImage,
    model,
-   power,
    price,
    fuel,
    bodyType,
-   luggageCapacity
 }) => {
    const { isAuthenticated } = useContext(AuthContext)
    const [show, setShow] = useState(false);
@@ -48,9 +46,7 @@ export const CarArticle = ({
 
          <div className={`row ${CarArticleCSS.carData}`}>
             <span className={`col-7 ${CarArticleCSS.carEngine}`}>Fuel: {fuel}</span>
-            <span className={`col-5 ${CarArticleCSS.carPower}`}>Power: {power}hp</span>
-            <span className={`col-7 ${CarArticleCSS.carSeatCapacity}`}>Body type: {bodyType}</span>
-            <span className={`col-5 ${CarArticleCSS.carLuggageCapacity}`}>Boot capacity: {luggageCapacity}L</span>
+            <span className={`col-5 ${CarArticleCSS.carSeatCapacity}`}>Body type: {bodyType}</span>
          </div>
 
          <div className={CarArticleCSS.buttonList}>

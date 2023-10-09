@@ -33,12 +33,9 @@ export const Details = ({
                     <p>Car model: {car.model} </p>
                     <p>Year of production: {car.year} </p>
                     <p>Price: {car.price}$/per day</p>
-                    <p>Vehicle location: {car.location}</p>
                     <p>Body type: {car.bodyType}</p>
                     <p>Fuel type: {car.fuel}</p>
                     <p>Fuel consumption: {car.fuelConsumption}L/100km</p>
-                    <p>Engine power: {car.power}hp</p>
-                    <p>Luggage capacity: {car.luggageCapacity}L</p>
                     <p>Why should you choose this vehicle: {car.description}</p>
                 </div>
             </div>
