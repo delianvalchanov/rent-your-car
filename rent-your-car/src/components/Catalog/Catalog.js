@@ -12,31 +12,16 @@ export const Catalog = ({
     articles
 }) => {
     const { isAuthenticated } = useContext(AuthContext)
-    const carService = useAuthService(carServiceFactory)
-    const [carsList, setCarsList] = useState({})
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        carService.getAll()
-            .then(result => {
-                setCarsList(result)
-            })
-    })
 
-    const onDelete = (id) => {
-        carService.delete(id)
 
-        setCarsList(state => state.filter(x => x.id !== id))
-
-        navigate('/catalog')
-    }
     return (
         <>
             <div className={`row ${CatalogCSS.wrapper}`}>
                 {isAuthenticated && (
                     <Link to="/catalog/create" className={CatalogCSS.addBtn}><Button variant="outline-primary">Add new</Button></Link>
                 )}
-                {articles.map(x => <div className={`col-lg-4 ${CatalogCSS.article}`}> <CarArticle onDelete={onDelete} key={x._id} {...x} /> </div>)}
+                {articles.map(x => <div className={`col-lg-4 ${CatalogCSS.article}`}> <CarArticle key={x._id} {...x} /> </div>)}
             </div>
         </>
     )

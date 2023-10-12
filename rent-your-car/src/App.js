@@ -31,16 +31,11 @@ function App() {
    }, [carService])
 
    const onCreateArticle = async (data) => {
-      try {
-         const newArticle = await carService.create(data);
+      const newArticle = await carService.create(data);
 
-         setArticles(state => [...state, newArticle])
+      setArticles(state => [...state, newArticle])
 
-         navigate('/catalog')
-      } catch (error) {
-         console.log(error);
-      }
-
+      navigate('/catalog')
    }
 
    const onEdit = async (values) => {
@@ -49,6 +44,14 @@ function App() {
       setArticles(state => state.map(x => x._id === values._id ? result : x))
 
       navigate(`/catalog/${values._id}`);
+   }
+
+   const onDelete = (id) => {
+      carService.delete(id)
+
+      setArticles(state => state.filter(x => x.id !== id))
+
+      navigate('/catalog')
    }
 
    return (
@@ -60,7 +63,7 @@ function App() {
                   <Route path='/' element={<Home />} />
                   <Route path='/catalog' element={<Catalog articles={articles} />} />
                   <Route path='/catalog/create' element={<Create onCreateArticle={onCreateArticle} />} />
-                  <Route path='/catalog/:articleId' element={<Details />} />
+                  <Route path='/catalog/:articleId' element={<Details onDelete={onDelete} />} />
                   <Route path='/catalog/:articleId/edit' element={<Edit onEdit={onEdit} />} />
                   <Route path='/about' element={<About />} />
                   <Route path='/login' element={<Login />} />
