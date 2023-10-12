@@ -1,53 +1,62 @@
 import { Button } from 'react-bootstrap'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { useFormik } from 'formik';
 
 import { AuthContext } from '../../contexts/AuthContext'
 import LoginCSS from './assets/Login.module.css'
-import { useForm } from '../../hooks/useControlledForm'
-
-const LoginFormKeys = {
-    Email: 'email',
-    Password: 'password'
-};
+import { LoginSchema } from '../../schemas/authSchema';
 
 export const Login = () => {
     const { onLoginSubmit } = useContext(AuthContext)
-    const { values, errors, changeHandler, onSubmit } = useForm({
-        [LoginFormKeys.Email]: '',
-        [LoginFormKeys.Password]: '',
-    }, onLoginSubmit)
+
+    const onSubmit = () => {
+        onLoginSubmit(values);
+    }
+
+    const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+        },
+        validationSchema: LoginSchema,
+        onSubmit,
+    })
 
     return (
         <section className={LoginCSS.wrapper}>
-            <form id={LoginCSS['login']} method="POST" onSubmit={onSubmit}>
+            <form id={LoginCSS['login']} method="POST" onSubmit={handleSubmit} autoComplete='on'>
                 <div className="container">
                     <h2>Login</h2>
 
-                    <formfield>
+                    <fieldset>
                         <label htmlFor="email">Email: </label>
                         <input
                             type="email"
-                            id={LoginCSS['email']}
-                            name={LoginFormKeys.Email}
+                            name='email'
+                            className={errors.email && touched.email ? LoginCSS.inputerr : LoginCSS.authField}
+                            id='email'
                             placeholder="peter@gmail.com"
-                            value={values[LoginFormKeys.Email]}
-                            onChange={changeHandler}
+                            value={values.email}
+                            onChange={handleChange('email')}
+                            onBlur={handleBlur('email')}
                         />
-                        <p>{errors.email}</p>
-                    </formfield>
+                        {errors.email && touched.email && <p>{errors.email}</p>}
+                    </fieldset>
 
-                    <formfield>
+                    <fieldset>
                         <label htmlFor="login-pass">Password: </label>
                         <input
                             type="password"
-                            id={LoginCSS['password']}
-                            name={LoginFormKeys.Password}
-                            value={values[LoginFormKeys.Password]}
-                            onChange={changeHandler}
+                            name='password'
+                            className={errors.password && touched.password ? LoginCSS.inputerr : LoginCSS.authField}
+                            id='password'
+                            value={values.password}
+                            onChange={handleChange('password')}
+                            onBlur={handleBlur('password')}
                         />
-                        <p>{errors.password}</p>
-                    </formfield>
+                        {errors.password && touched.password && <p>{errors.password}</p>}
+                    </fieldset>
 
                     <Button type="submit" className={LoginCSS.submit} value="Submit"> Login</Button>
 

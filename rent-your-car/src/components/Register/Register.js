@@ -1,76 +1,87 @@
 import { Button } from "react-bootstrap"
 import { useContext } from "react"
 import { Link } from "react-router-dom"
+import { useFormik } from "formik"
 
-import { useForm } from "../../hooks/useControlledForm"
 import { AuthContext } from "../../contexts/AuthContext"
 import RegisterCSS from "./assets/Register.module.css"
-
-const RegisterFormKeys = {
-    Username: 'username',
-    Email: 'email',
-    Password: 'password',
-    ConfirmPassword: 'confirmPassword'
-}
+import { RegisterSchema } from "../../schemas/authSchema"
 
 export const Register = () => {
     const { onRegisterSubmit } = useContext(AuthContext);
-    const { values, errors, changeHandler, onSubmit } = useForm({
-        [RegisterFormKeys.Username]: '',
-        [RegisterFormKeys.Email]: '',
-        [RegisterFormKeys.Password]: '',
-        [RegisterFormKeys.ConfirmPassword]: '',
-    }, onRegisterSubmit)
+
+    const onSubmit = () => {
+        onRegisterSubmit(values)
+    }
+
+    const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
+        initialValues: {
+            username: '',
+            email: '',
+            password: '',
+            confirmPassword: ''
+        },
+        validationSchema: RegisterSchema,
+        onSubmit,
+    })
 
     return (
         <section className={RegisterCSS.wrapper}>
-            <form id={RegisterCSS['register']} method='POST' onSubmit={onSubmit}>
+            <form id={RegisterCSS['register']} method='POST' onSubmit={handleSubmit} autoComplete="off">
                 <div className="container">
                     <h2>Register</h2>
-                    <formfield>
+                    <fieldset>
                         <label htmlFor="username">Username: </label>
                         <input type="text"
-                            id={RegisterCSS['username']}
+                            id='username'
+                            className={errors.username && touched.username ? RegisterCSS.inputerr : RegisterCSS.authField}
                             name="username"
-                            value={values[RegisterFormKeys.Username]}
-                            onChange={changeHandler}
+                            value={values.username}
+                            onChange={handleChange('username')}
+                            onBlur={handleBlur('username')}
                         />
-                        <p>{errors.username}</p>
-                    </formfield>
+                        {errors.username && touched.username && <p>{errors.username}</p>}
+                    </fieldset>
 
-                    <formfield>
+                    <fieldset>
                         <label htmlFor="email">Email: </label>
                         <input type="email"
-                            id={RegisterCSS['email']}
+                            id='email'
+                            className={errors.email && touched.email ? RegisterCSS.inputerr : RegisterCSS.authField}
                             name="email"
                             placeholder="peter@gmail.com"
-                            value={values[RegisterFormKeys.Email]}
-                            onChange={changeHandler}
+                            value={values.email}
+                            onChange={handleChange('email')}
+                            onBlur={handleBlur('email')}
                         />
-                        <p>{errors.email}</p>
-                    </formfield>
+                        {errors.email && touched.email && <p>{errors.email}</p>}
+                    </fieldset>
 
-                    <formfield>
+                    <fieldset>
                         <label htmlFor="password">Password: </label>
                         <input type="password"
-                            id={RegisterCSS['password']}
+                            id='password'
+                            className={errors.password && touched.password ? RegisterCSS.inputerr : RegisterCSS.authField}
                             name="password"
-                            value={values[RegisterFormKeys.Password]}
-                            onChange={changeHandler}
+                            value={values.password}
+                            onChange={handleChange('password')}
+                            onBlur={handleBlur('password')}
                         />
-                        <p>{errors.password}</p>
-                    </formfield>
+                        {errors.password && touched.password && <p>{errors.password}</p>}
+                    </fieldset>
 
-                    <formfield>
+                    <fieldset>
                         <label htmlFor="confirmPassword">Confirm Password: </label>
                         <input type="password"
-                            id={RegisterCSS['confirmPassword']}
+                            id='confirmPassword'
+                            className={errors.confirmPassword && touched.confirmPassword ? RegisterCSS.inputerr : RegisterCSS.authField}
                             name="confirmPassword"
-                            value={values[RegisterFormKeys.ConfirmPassword]}
-                            onChange={changeHandler}
+                            value={values.confirmPassword}
+                            onChange={handleChange('confirmPassword')}
+                            onBlur={handleBlur('confirmPassword')}
                         />
-                        <p>{errors.confirmPassword}</p>
-                    </formfield>
+                        {errors.confirmPassword && touched.confirmPassword && <p>{errors.confirmPassword}</p>}
+                    </fieldset>
 
                     <Button type="submit" className={RegisterCSS.submit} value="Submit">Register</Button>
 

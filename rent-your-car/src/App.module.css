@@ -52,7 +52,7 @@ code {
       monospace;
 }
 
-formfield p  {
+fieldset p  {
    font-size: .8rem;
    color: red;
 }

@@ -19,7 +19,7 @@ export const AuthProvider = ({
 
             navigate('/catalog')
         } catch (error) {
-            console.log(error);
+            alert(error.message);
         }
     }
 
@@ -36,7 +36,7 @@ export const AuthProvider = ({
 
             navigate('/catalog')
         } catch (error) {
-            console.log(error);
+            alert(error.message)
         }
     }
 

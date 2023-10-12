@@ -1,14 +1,21 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { FormValidation } from "../validation/FormValidation";
 
 export const useForm = (initialValues, onSubmitHandler) => {
     const [values, setValues] = useState(initialValues);
     const [errors, setErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
+    const [focused, setFocused] = useState(false);
 
     const changeHandler = (e) => {
         setValues(state => ({ ...state, [e.target.name]: e.target.value }))
     }
+
+    const handleFocus = (e) => {
+        setFocused(true)
+    };
+
+
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -19,6 +26,12 @@ export const useForm = (initialValues, onSubmitHandler) => {
         setIsSubmit(true);
     }
 
+
+    // useEffect(() => {
+    //     if (Object.keys(errors).length === 0 && onSubmit) {
+    //         console.log(values);
+    //     }
+    // })
     const changeValues = (newValues) => {
         setValues(newValues);
     }
@@ -28,7 +41,9 @@ export const useForm = (initialValues, onSubmitHandler) => {
         errors,
         changeHandler,
         onSubmit,
-        changeValues
+        changeValues,
+        handleFocus,
+        focused
     }
 
 }

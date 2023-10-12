@@ -31,11 +31,16 @@ function App() {
    }, [carService])
 
    const onCreateArticle = async (data) => {
-      const newArticle = await carService.create(data);
+      try {
+         const newArticle = await carService.create(data);
 
-      setArticles(state => [...state, newArticle])
+         setArticles(state => [...state, newArticle])
 
-      navigate('/catalog')
+         navigate('/catalog')
+      } catch (error) {
+         console.log(error);
+      }
+
    }
 
    const onEdit = async (values) => {

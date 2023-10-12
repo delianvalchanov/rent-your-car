@@ -29,10 +29,17 @@ div.container {
     font-style: italic;
  }
  
- #create input {
+ .carField {
     width: 20rem;
     margin-bottom: 1rem;
     padding: 5px;
+ }
+
+ .inputerr{
+   width: 20rem;
+   margin-bottom: 0;
+   padding: 5px;
+   border: 1px solid red;
  }
  
  #create select {
