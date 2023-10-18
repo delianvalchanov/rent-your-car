@@ -3,14 +3,15 @@ import { Button } from "react-bootstrap";
 import { useFormik } from "formik";
 
 import { ArticleSchema } from "../../../schemas/articleSchema";
+import { useContext } from "react";
+import { ArticleContext } from "../../../contexts/ArticleContext";
 
-export const Create = (
-    { onCreateArticle },
-
-) => {
+export const Create = () => {
+    const { onCreateArticle } = useContext(ArticleContext)
     const onSubmit = () => {
         onCreateArticle(values);
     }
+
 
     const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
         initialValues: {

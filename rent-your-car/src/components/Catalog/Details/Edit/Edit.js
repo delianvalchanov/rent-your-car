@@ -5,11 +5,11 @@ import EditCSS from "./assets/Edit.module.css"
 import { Button } from "react-bootstrap";
 import { useAuthService } from "../../../../hooks/useAuthService";
 import { carServiceFactory } from "../../../../services/carService";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { ArticleContext } from "../../../../contexts/ArticleContext";
 
-export const Edit = ({
-    onEdit,
-}) => {
+export const Edit = () => {
+    const { onEdit } = useContext(ArticleContext);
     const { articleId } = useParams()
     const carService = useAuthService(carServiceFactory)
     const { values, changeHandler, onSubmit, changeValues } = useForm({

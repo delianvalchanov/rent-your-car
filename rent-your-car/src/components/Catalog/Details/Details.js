@@ -6,11 +6,11 @@ import { carServiceFactory } from '../../../services/carService';
 import { useAuthService } from "../../../hooks/useAuthService";
 import DetailsCSS from "./Details.module.css"
 import { AuthContext } from "../../../contexts/AuthContext";
+import { ArticleContext } from "../../../contexts/ArticleContext";
 
-export const Details = ({
-    onDelete,
-}) => {
+export const Details = () => {
     const { userId } = useContext(AuthContext)
+    const { onDelete } = useContext(ArticleContext)
     const carService = useAuthService(carServiceFactory)
     const { articleId } = useParams();
     const [car, setCar] = useState({});
@@ -21,6 +21,7 @@ export const Details = ({
                 setCar(result);
             })
     }, [articleId]);
+
 
     return (
         <div className={DetailsCSS.wrapper}>
@@ -35,7 +36,6 @@ export const Details = ({
                     <p>Price: {car.price}$/per day</p>
                     <p>Body type: {car.bodyType}</p>
                     <p>Fuel type: {car.fuel}</p>
-                    <p>Fuel consumption: {car.fuelConsumption}L/100km</p>
                     <p>Why should you choose this vehicle: {car.description}</p>
                 </div>
             </div>

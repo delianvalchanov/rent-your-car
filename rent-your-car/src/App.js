@@ -17,75 +17,47 @@ import { Register } from "./components/Register";
 import { Logout } from "./components/Logout";
 import { Edit } from "./components/Catalog/Details/Edit";
 import { Create } from "./components/Catalog/Create";
+import { ArticleProvider } from "./contexts/ArticleContext";
 
 function App() {
-  const navigate = useNavigate();
-  const [articles, setArticles] = useState([]);
 
-  const carService = carServiceFactory(); //auth.accessToken
 
-  useEffect(() => {
-    carService.getAll().then((result) => {
-      setArticles(result);
-    });
-  }, []);
 
-  const onCreateArticle = async (data) => {
-    const newArticle = await carService.create(data);
+   return (
 
-    setArticles((state) => [...state, newArticle]);
+      <>
+         <AuthProvider>
+            <ArticleProvider>
+               <Header />
+               <main id="main">
+                  <Routes>
+                     <Route path="/" element={<Home />} />
+                     <Route path="/catalog" element={<Catalog />} />
+                     <Route
+                        path="/catalog/create"
+                        element={<Create />}
+                     />
+                     <Route
+                        path="/catalog/:articleId"
+                        element={<Details />}
+                     />
+                     <Route
+                        path="/catalog/:articleId/edit"
+                        element={<Edit />}
+                     />
+                     <Route path="/about" element={<About />} />
+                     <Route path="/login" element={<Login />} />
+                     <Route path="/register" element={<Register />} />
+                     <Route path="/logout" element={<Logout />} />
+                  </Routes>
+               </main>
+               <Footer />
 
-    navigate("/catalog");
-  };
+            </ArticleProvider>
 
-  const onEdit = async (values) => {
-    const result = await carService.edit(values._id, values);
-
-    setArticles((state) =>
-      state.map((x) => (x._id === values._id ? result : x))
-    );
-
-    navigate(`/catalog/${values._id}`);
-  };
-
-  const onDelete = (id) => {
-    carService.delete(id);
-
-    setArticles((state) => state.filter((x) => x.id !== id));
-
-    navigate("/catalog");
-  };
-
-  return (
-    <>
-      <AuthProvider>
-        <Header />
-        <main id="main">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/catalog" element={<Catalog articles={articles} />} />
-            <Route
-              path="/catalog/create"
-              element={<Create onCreateArticle={onCreateArticle} />}
-            />
-            <Route
-              path="/catalog/:articleId"
-              element={<Details onDelete={onDelete} />}
-            />
-            <Route
-              path="/catalog/:articleId/edit"
-              element={<Edit onEdit={onEdit} />}
-            />
-            <Route path="/about" element={<About />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/logout" element={<Logout />} />
-          </Routes>
-        </main>
-        <Footer />
-      </AuthProvider>
-    </>
-  );
+         </AuthProvider>
+      </>
+   );
 }
 
 export default App;

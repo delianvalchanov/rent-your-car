@@ -1,18 +1,15 @@
 import { CarArticle } from "./CarArticle"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { Button } from 'react-bootstrap'
-import { useContext, useState, useEffect } from "react"
+import { useContext } from "react"
 
 import CatalogCSS from "./assets/Catalog.module.css"
 import { AuthContext } from "../../contexts/AuthContext"
-import { useAuthService } from "../../hooks/useAuthService"
-import { carServiceFactory } from "../../services/carService"
+import { ArticleContext } from "../../contexts/ArticleContext"
 
-export const Catalog = ({
-    articles
-}) => {
+export const Catalog = () => {
     const { isAuthenticated } = useContext(AuthContext)
-
+    const { articles } = useContext(ArticleContext)
 
 
     return (
