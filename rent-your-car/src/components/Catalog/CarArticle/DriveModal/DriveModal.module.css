@@ -1,14 +1,15 @@
-.container {
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    height: 150px;
+.label{
     display: flex;
+    align-items: baseline;
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: .2rem;
 }
-
-.calendar{
-    padding: 1rem 2rem;
-    border: 1px solid blue;
-    cursor: pointer;
-    border-radius: 5px;
+.value{
+    font-size: 1.2rem;
+    display: inline;
+    color: red;
+    margin-left: .3rem;
+    margin-right: .3rem;
+    margin-bottom:0!important;
 }

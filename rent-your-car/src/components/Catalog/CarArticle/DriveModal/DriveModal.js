@@ -1,21 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import { DateRangePicker } from "react-date-range";
 import { format, differenceInDays } from "date-fns";
+import { carServiceFactory } from "../../../../services/carService";
+import { useAuthService } from "../../../../hooks/useAuthService";
 
 import DirveModalCSS from "./DriveModal.module.css";
-import "react-date-range/dist/styles.css"; // main style file
-import "react-date-range/dist/theme/default.css"; // theme css file
+import "react-date-range/dist/styles.css"; // main calendar style file
+import "react-date-range/dist/theme/default.css"; // theme calendar css file
 
-export const DriveModal = ({ show, onHide }) => {
+export const DriveModal = ({ show, onHide, id }) => {
   const [openCalendar, setOpenCalendar] = useState(false);
+  const carService = useAuthService(carServiceFactory)
+  const [car, setCar] = useState({});
   const [date, setDate] = useState({
     startDate: new Date(),
     endDate: new Date(),
     key: "selection",
   });
 
+
+  useEffect(() => {
+    carService.getOne(id)
+      .then(result => {
+        setCar(result);
+      })
+  }, [id]);
+
   const days = differenceInDays(date.endDate, date.startDate);
+  const totalPrice = days * car.price
 
   const handleChange = (ranges) => {
     setDate(ranges.selection);
@@ -26,9 +39,9 @@ export const DriveModal = ({ show, onHide }) => {
   };
   return (
     <>
-      <Modal show={show} onHide={onHide}>
+      <Modal size="lg" show={show} onHide={onHide}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Select duration and confirm choices</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -36,15 +49,18 @@ export const DriveModal = ({ show, onHide }) => {
               <Button
                 onClick={handleClickCalendar}
                 variant="primary"
-                //className={DirveModalCSS.calendar}
+                className="mb-1"
               >
-                Select date range
+                {`${format(date.startDate, "dd MMM yyyy")} to ${format(
+                  date.endDate,
+                  "dd MMM yyyy"
+                )}`}
               </Button>
-              <span>{`${format(date.startDate, "dd MMM yyyy")} to ${format(
-                date.endDate,
-                "dd MMM yyyy"
-              )}`}</span>
-              <span>{`Days count ${days}`}</span>
+              <span className={DirveModalCSS.label}>Total days renting:
+                <p className={DirveModalCSS.value}>{`${days}`}</p>days
+              </span>
+              <span className={DirveModalCSS.label}>Final price:
+                <p className={DirveModalCSS.value}>{`${totalPrice}`}</p>$</span>
               {openCalendar && (
                 <DateRangePicker
                   ranges={[date]}
@@ -59,8 +75,8 @@ export const DriveModal = ({ show, onHide }) => {
           <Button variant="secondary" onClick={onHide}>
             Close
           </Button>
-          <Button variant="primary" onClick={onHide}>
-            Save Changes
+          <Button variant="success" onClick={onHide}>
+            Confirm
           </Button>
         </Modal.Footer>
       </Modal>

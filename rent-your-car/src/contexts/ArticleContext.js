@@ -53,6 +53,7 @@ export const ArticleProvider = ({ children }) => {
 
     const context = {
         id,
+        articleId: id(id),
         articles,
         onCreateArticle,
         onEdit,

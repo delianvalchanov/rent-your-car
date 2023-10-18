@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
 
 import { AuthContext } from "../../../contexts/AuthContext";
@@ -10,12 +10,11 @@ import { DriveModal } from "./DriveModal/DriveModal";
 
 export const CarArticle = ({ _id, carImage, model, price, fuel, bodyType }) => {
    const { isAuthenticated, email } = useContext(AuthContext);
-   const { articleId } = useParams()
    const [show, setShow] = useState(false);
-   const [car, setCar] = useState({})
 
-   const handleClose = () => setShow(false);
-   const handleShow = () => setShow(true);
+   const toggleShow = () => {
+      setShow(!show)
+   }
 
    return (
 
@@ -55,7 +54,7 @@ export const CarArticle = ({ _id, carImage, model, price, fuel, bodyType }) => {
             </Link>
             {isAuthenticated && (
                <Button
-                  onClick={handleShow}
+                  onClick={toggleShow}
                   variant="outline-success"
                   className={CarArticleCSS.button}
                >
@@ -64,7 +63,7 @@ export const CarArticle = ({ _id, carImage, model, price, fuel, bodyType }) => {
             )}
          </div>
 
-         <DriveModal show={show} onHide={handleClose} />
+         <DriveModal show={show} onHide={toggleShow} id={_id} />
       </div>
    );
 };
