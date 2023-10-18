@@ -5,64 +5,59 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export const AuthContext = createContext();
 
-export const AuthProvider = ({
-    children
-}) => {
-    const navigate = useNavigate();
-    const [auth, setAuth] = useLocalStorage('auth', {});
-    const authService = authServiceFactory(auth.accessToken)
+export const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
+  const [auth, setAuth] = useLocalStorage("auth", {});
+  const authService = authServiceFactory(auth.accessToken);
 
-    const onLoginSubmit = async (data) => {
-        try {
-            const result = await authService.login(data)
-            setAuth(result)
+  const onLoginSubmit = async (data) => {
+    try {
+      const result = await authService.login(data);
+      setAuth(result);
 
-            navigate('/catalog')
-        } catch (error) {
-            alert(error.message);
-        }
+      navigate("/catalog");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const onRegisterSubmit = async (values) => {
+    const { confirmPassword, ...registerData } = values;
+
+    if (confirmPassword !== registerData.password) {
+      return;
     }
 
-    const onRegisterSubmit = async (values) => {
-        const { confirmPassword, ...registerData } = values;
+    try {
+      const result = await authService.register(registerData);
+      setAuth(result);
 
-        if (confirmPassword !== registerData.password) {
-            return;
-        }
-
-        try {
-            const result = await authService.register(registerData)
-            setAuth(result)
-
-            navigate('/catalog')
-        } catch (error) {
-            alert(error.message)
-        }
+      navigate("/catalog");
+    } catch (error) {
+      alert(error.message);
     }
+  };
 
-    const onLogout = () => {
-        authService.logout();
+  const onLogout = () => {
+    authService.logout();
 
-        setAuth({});
-        navigate('/')
-    };
+    setAuth({});
+    navigate("/");
+  };
 
-    const context = {
-        onLoginSubmit,
-        onRegisterSubmit,
-        onLogout,
-        user: auth.user,
-        userId: auth._id,
-        token: auth.accessToken,
-        email: auth.email,
-        isAuthenticated: !!auth.accessToken
-    }
+  const context = {
+    onLoginSubmit,
+    onRegisterSubmit,
+    onLogout,
+    userId: auth._id,
+    token: auth.accessToken,
+    email: auth.email,
+    isAuthenticated: !!auth.accessToken,
+  };
 
-    return (
-        <>
-            <AuthContext.Provider value={context}>
-                {children}
-            </AuthContext.Provider>
-        </>
-    )
-}
+  return (
+    <>
+      <AuthContext.Provider value={context}>{children}</AuthContext.Provider>
+    </>
+  );
+};

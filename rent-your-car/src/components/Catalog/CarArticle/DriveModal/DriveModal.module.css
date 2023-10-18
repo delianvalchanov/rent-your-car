@@ -1,0 +1,14 @@
+.container {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    display: flex;
+}
+
+.calendar{
+    padding: 1rem 2rem;
+    border: 1px solid blue;
+    cursor: pointer;
+    border-radius: 5px;
+}
