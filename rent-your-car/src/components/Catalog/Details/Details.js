@@ -10,7 +10,7 @@ import { ArticleContext } from "../../../contexts/ArticleContext";
 
 export const Details = () => {
     const { userId } = useContext(AuthContext)
-    const { onDelete } = useContext(ArticleContext)
+    const { onDelete, id } = useContext(ArticleContext)
     const carService = useAuthService(carServiceFactory)
     const { articleId } = useParams();
     const [car, setCar] = useState({});
@@ -21,6 +21,8 @@ export const Details = () => {
                 setCar(result);
             })
     }, [articleId]);
+
+    id(articleId)
 
 
     return (
