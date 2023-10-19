@@ -35,7 +35,7 @@ export const CarArticle = ({ _id, carImage, model, price, fuel, bodyType }) => {
             </div>
             <div className="col-5">
                {" "}
-               <StarRating />
+               <StarRating id={_id} />
             </div>
          </div>
 

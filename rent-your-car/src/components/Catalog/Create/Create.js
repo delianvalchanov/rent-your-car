@@ -12,7 +12,6 @@ export const Create = () => {
         onCreateArticle(values);
     }
 
-
     const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
         initialValues: {
             model: '',
@@ -21,7 +20,7 @@ export const Create = () => {
             carImage: '',
             year: '',
             fuel: '',
-            description: '',
+            description: ''
         },
         validationSchema: ArticleSchema,
         onSubmit,

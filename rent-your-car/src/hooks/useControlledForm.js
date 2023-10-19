@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { FormValidation } from "../validation/FormValidation";
 
 export const useForm = (initialValues, onSubmitHandler) => {
@@ -14,8 +14,6 @@ export const useForm = (initialValues, onSubmitHandler) => {
     const handleFocus = (e) => {
         setFocused(true)
     };
-
-
 
     const onSubmit = (e) => {
         e.preventDefault();

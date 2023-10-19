@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import AppCSS from "./App.module.css";
 
-import { carServiceFactory } from "./services/carService";
-import { AuthContext, AuthProvider } from "./contexts/AuthContext";
+import { AuthProvider } from "./contexts/AuthContext";
+import { ArticleProvider } from "./contexts/ArticleContext";
 
 import { Header } from "./components/Header";
 import { Home } from "./components/Home";
@@ -17,14 +16,10 @@ import { Register } from "./components/Register";
 import { Logout } from "./components/Logout";
 import { Edit } from "./components/Catalog/Details/Edit";
 import { Create } from "./components/Catalog/Create";
-import { ArticleProvider } from "./contexts/ArticleContext";
+import { NotFoundPage } from "./components/404/NotFoundPage";
 
 function App() {
-
-
-
    return (
-
       <>
          <AuthProvider>
             <ArticleProvider>
@@ -49,12 +44,11 @@ function App() {
                      <Route path="/login" element={<Login />} />
                      <Route path="/register" element={<Register />} />
                      <Route path="/logout" element={<Logout />} />
+                     <Route path="/*" element={<NotFoundPage />} />
                   </Routes>
                </main>
                <Footer />
-
             </ArticleProvider>
-
          </AuthProvider>
       </>
    );
