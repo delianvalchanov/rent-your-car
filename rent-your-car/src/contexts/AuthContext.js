@@ -49,6 +49,7 @@ export const AuthProvider = ({ children }) => {
     onLoginSubmit,
     onRegisterSubmit,
     onLogout,
+    username: auth.username,
     userId: auth._id,
     token: auth.accessToken,
     email: auth.email,

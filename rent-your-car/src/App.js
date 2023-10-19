@@ -17,41 +17,42 @@ import { Logout } from "./components/Logout";
 import { Edit } from "./components/Catalog/Details/Edit";
 import { Create } from "./components/Catalog/Create";
 import { NotFoundPage } from "./components/404/NotFoundPage";
+import { RequiredAuth } from "./components/RequiredAuth/RequiredAuth";
 
 function App() {
-   return (
-      <>
-         <AuthProvider>
-            <ArticleProvider>
-               <Header />
-               <main id="main">
-                  <Routes>
-                     <Route path="/" element={<Home />} />
-                     <Route path="/catalog" element={<Catalog />} />
-                     <Route
-                        path="/catalog/create"
-                        element={<Create />}
-                     />
-                     <Route
-                        path="/catalog/:articleId"
-                        element={<Details />}
-                     />
-                     <Route
-                        path="/catalog/:articleId/edit"
-                        element={<Edit />}
-                     />
-                     <Route path="/about" element={<About />} />
-                     <Route path="/login" element={<Login />} />
-                     <Route path="/register" element={<Register />} />
-                     <Route path="/logout" element={<Logout />} />
-                     <Route path="/*" element={<NotFoundPage />} />
-                  </Routes>
-               </main>
-               <Footer />
-            </ArticleProvider>
-         </AuthProvider>
-      </>
-   );
+  const isOwner = (ownerId, userId) => {
+    return ownerId === userId;
+  };
+  return (
+    <>
+      <AuthProvider>
+        <ArticleProvider>
+          <Header />
+          <main id="main">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route element={<RequiredAuth />}>
+                <Route path="/catalog" element={<Catalog />} />
+                <Route path="/catalog/create" element={<Create />} />
+                <Route
+                  path="/catalog/:articleId"
+                  element={<Details isOwner={isOwner} />}
+                />
+                <Route path="/catalog/:articleId/edit" element={<Edit />} />
+              </Route>
+
+              <Route path="/about" element={<About />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/logout" element={<Logout />} />
+              <Route path="/*" element={<NotFoundPage />} />
+            </Routes>
+          </main>
+          <Footer />
+        </ArticleProvider>
+      </AuthProvider>
+    </>
+  );
 }
 
 export default App;

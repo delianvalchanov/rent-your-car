@@ -11,7 +11,7 @@ import "react-date-range/dist/theme/default.css"; // theme calendar css file
 
 export const DriveModal = ({ show, onHide, id }) => {
   const [openCalendar, setOpenCalendar] = useState(false);
-  const carService = useAuthService(carServiceFactory)
+  const carService = useAuthService(carServiceFactory);
   const [car, setCar] = useState({});
   const [date, setDate] = useState({
     startDate: new Date(),
@@ -19,16 +19,14 @@ export const DriveModal = ({ show, onHide, id }) => {
     key: "selection",
   });
 
-
   useEffect(() => {
-    carService.getOne(id)
-      .then(result => {
-        setCar(result);
-      })
+    carService.getOne(id).then((result) => {
+      setCar(result);
+    });
   }, [id]);
 
   const days = differenceInDays(date.endDate, date.startDate);
-  const totalPrice = days * car.price
+  const totalPrice = days * car.price;
 
   const handleChange = (ranges) => {
     setDate(ranges.selection);
@@ -56,11 +54,14 @@ export const DriveModal = ({ show, onHide, id }) => {
                   "dd MMM yyyy"
                 )}`}
               </Button>
-              <span className={DirveModalCSS.label}>Total days renting:
+              <span className={DirveModalCSS.label}>
+                Total days renting:
                 <p className={DirveModalCSS.value}>{`${days}`}</p>days
               </span>
-              <span className={DirveModalCSS.label}>Final price:
-                <p className={DirveModalCSS.value}>{`${totalPrice}`}</p>$</span>
+              <span className={DirveModalCSS.label}>
+                Final price:
+                <p className={DirveModalCSS.value}>{`${totalPrice}`}</p>$
+              </span>
               {openCalendar && (
                 <DateRangePicker
                   ranges={[date]}
