@@ -7,6 +7,7 @@ import { useAuthService } from "../../../hooks/useAuthService";
 import DetailsCSS from "./Details.module.css";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { ArticleContext } from "../../../contexts/ArticleContext";
+import { Toaster } from "react-hot-toast";
 
 export const Details = ({ isOwner }) => {
   //const { username } = useContext(AuthContext)
@@ -52,6 +53,7 @@ export const Details = ({ isOwner }) => {
           <Button onClick={() => onDelete(articleId)} variant="outline-danger">
             Delete
           </Button>
+          <Toaster />
         </div>
       )}
     </div>

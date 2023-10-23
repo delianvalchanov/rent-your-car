@@ -2,6 +2,7 @@ import { createContext } from "react";
 import { authServiceFactory } from "../services/authService";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import toast from "react-hot-toast";
 
 export const AuthContext = createContext();
 
@@ -15,9 +16,14 @@ export const AuthProvider = ({ children }) => {
       const result = await authService.login(data);
       setAuth(result);
 
-      navigate("/catalog");
+      toast.success("Successfull login!", {
+        duration: 1000,
+      });
+      setTimeout(() => {
+        navigate("/catalog");
+      }, 1000);
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message);
     }
   };
 
@@ -25,16 +31,22 @@ export const AuthProvider = ({ children }) => {
     const { confirmPassword, ...registerData } = values;
 
     if (confirmPassword !== registerData.password) {
+      toast.error("Passwords don`t match!");
       return;
     }
 
     try {
       const result = await authService.register(registerData);
       setAuth(result);
+      toast.success("Successfull registration!", {
+        duration: 1000,
+      });
 
-      navigate("/catalog");
+      setTimeout(() => {
+        navigate("/catalog");
+      }, 1000);
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message);
     }
   };
 

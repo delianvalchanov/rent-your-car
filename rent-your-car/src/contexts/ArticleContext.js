@@ -3,6 +3,9 @@ import { useState, useEffect, createContext, useContext } from "react";
 
 import { carServiceFactory } from "../services/carService";
 import { AuthContext } from "./AuthContext";
+import { useAuthService } from "../hooks/useAuthService";
+import { authServiceFactory } from "../services/authService";
+import toast from "react-hot-toast";
 
 export const ArticleContext = createContext();
 
@@ -11,14 +14,7 @@ export const ArticleProvider = ({ children }) => {
   const navigate = useNavigate();
   const [articles, setArticles] = useState([]);
 
-  let article = articles.find((obj) => obj._ownerId === userId);
-
-  const id = (id) => {
-    let articleId = id;
-    return articleId;
-  };
-
-  const carService = carServiceFactory(token); //auth.accessToken
+  const carService = useAuthService(carServiceFactory); //auth.accessToken
 
   useEffect(() => {
     carService.getAll().then((result) => {
@@ -31,7 +27,13 @@ export const ArticleProvider = ({ children }) => {
 
     setArticles((state) => [...state, newArticle]);
 
-    navigate("/catalog");
+    toast.success("Article created successfully!", {
+      duration: 1000,
+    });
+
+    setTimeout(() => {
+      navigate(`/catalog`);
+    }, 1000);
   };
 
   const onEdit = async (values) => {
@@ -41,7 +43,13 @@ export const ArticleProvider = ({ children }) => {
       state.map((x) => (x._id === values._id ? result : x))
     );
 
-    navigate(`/catalog/${values._id}`);
+    toast.success("Article edited successfully!", {
+      duration: 1000,
+    });
+
+    setTimeout(() => {
+      navigate(`/catalog/${values._id}`);
+    }, 1000);
   };
 
   const onDelete = (id) => {
@@ -49,13 +57,16 @@ export const ArticleProvider = ({ children }) => {
 
     setArticles((state) => state.filter((x) => x.id !== id));
 
-    navigate("/catalog");
+    toast.success("Article deleted successfully!", {
+      duration: 1000,
+    });
+
+    setTimeout(() => {
+      navigate(`/catalog`);
+    }, 1000);
   };
 
   const context = {
-    id,
-    article,
-    articleId: id(id),
     articles,
     onCreateArticle,
     onEdit,

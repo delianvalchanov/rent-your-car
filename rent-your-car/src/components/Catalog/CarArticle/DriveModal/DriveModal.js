@@ -4,12 +4,13 @@ import { DateRangePicker } from "react-date-range";
 import { format, differenceInDays } from "date-fns";
 import { carServiceFactory } from "../../../../services/carService";
 import { useAuthService } from "../../../../hooks/useAuthService";
+import { Toaster, toast } from "react-hot-toast";
 
 import DirveModalCSS from "./DriveModal.module.css";
 import "react-date-range/dist/styles.css"; // main calendar style file
 import "react-date-range/dist/theme/default.css"; // theme calendar css file
 
-export const DriveModal = ({ show, onHide, id }) => {
+export const DriveModal = ({ show, toggleShow, id, successfullSubmission }) => {
   const [openCalendar, setOpenCalendar] = useState(false);
   const carService = useAuthService(carServiceFactory);
   const [car, setCar] = useState({});
@@ -23,7 +24,7 @@ export const DriveModal = ({ show, onHide, id }) => {
     carService.getOne(id).then((result) => {
       setCar(result);
     });
-  }, [id]);
+  }, []);
 
   const days = differenceInDays(date.endDate, date.startDate);
   const totalPrice = days * car.price;
@@ -37,8 +38,8 @@ export const DriveModal = ({ show, onHide, id }) => {
   };
   return (
     <>
-      <Modal size="lg" show={show} onHide={onHide}>
-        <Modal.Header closeButton>
+      <Modal size="lg" show={show} toggleShow={toggleShow}>
+        <Modal.Header>
           <Modal.Title>Select duration and confirm choices</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -73,13 +74,14 @@ export const DriveModal = ({ show, onHide, id }) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={onHide}>
+          <Button variant="secondary" onClick={toggleShow}>
             Close
           </Button>
-          <Button variant="success" onClick={onHide}>
+          <Button variant="success" onClick={successfullSubmission}>
             Confirm
           </Button>
         </Modal.Footer>
+        <Toaster />
       </Modal>
     </>
   );

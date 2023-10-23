@@ -8,6 +8,7 @@ import CarArticleCSS from "./assets/CarArticle.module.css";
 import { StarRating } from "./StarRating/StarRating";
 import { DriveModal } from "./DriveModal/DriveModal";
 import { ArticleContext } from "../../../contexts/ArticleContext";
+import { toast } from "react-hot-toast";
 
 export const CarArticle = ({ _id, carImage, model, price, fuel, bodyType }) => {
   const { isAuthenticated, email } = useContext(AuthContext);
@@ -16,6 +17,15 @@ export const CarArticle = ({ _id, carImage, model, price, fuel, bodyType }) => {
 
   const toggleShow = () => {
     setShow(!show);
+  };
+
+  const successfullSubmission = () => {
+    toast.success("You successfully rented a car!", {
+      duration: 1000,
+    });
+    setTimeout(() => {
+      setShow(!show);
+    }, 1000);
   };
 
   return (
@@ -65,7 +75,12 @@ export const CarArticle = ({ _id, carImage, model, price, fuel, bodyType }) => {
         )}
       </div>
 
-      <DriveModal show={show} onHide={toggleShow} id={_id} />
+      <DriveModal
+        show={show}
+        toggleShow={toggleShow}
+        successfullSubmission={successfullSubmission}
+        id={_id}
+      />
     </div>
   );
 };

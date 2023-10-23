@@ -26,30 +26,53 @@ function App() {
   return (
     <>
       <AuthProvider>
-        <ArticleProvider>
-          <Header />
-          <main id="main">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route element={<RequiredAuth />}>
-                <Route path="/catalog" element={<Catalog />} />
-                <Route path="/catalog/create" element={<Create />} />
-                <Route
-                  path="/catalog/:articleId"
-                  element={<Details isOwner={isOwner} />}
-                />
-                <Route path="/catalog/:articleId/edit" element={<Edit />} />
-              </Route>
+        <Header />
+        <main id="main">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route element={<RequiredAuth />}>
+              <Route
+                path="/catalog"
+                element={
+                  <ArticleProvider>
+                    <Catalog />
+                  </ArticleProvider>
+                }
+              />
+              <Route
+                path="/catalog/create"
+                element={
+                  <ArticleProvider>
+                    <Create />
+                  </ArticleProvider>
+                }
+              />
+              <Route
+                path="/catalog/:articleId"
+                element={
+                  <ArticleProvider>
+                    <Details isOwner={isOwner} />
+                  </ArticleProvider>
+                }
+              />
+              <Route
+                path="/catalog/:articleId/edit"
+                element={
+                  <ArticleProvider>
+                    <Edit />
+                  </ArticleProvider>
+                }
+              />
+            </Route>
 
-              <Route path="/about" element={<About />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/logout" element={<Logout />} />
-              <Route path="/*" element={<NotFoundPage />} />
-            </Routes>
-          </main>
-          <Footer />
-        </ArticleProvider>
+            <Route path="/about" element={<About />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/*" element={<NotFoundPage />} />
+          </Routes>
+        </main>
+        <Footer />
       </AuthProvider>
     </>
   );

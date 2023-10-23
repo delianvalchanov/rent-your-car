@@ -1,4 +1,10 @@
-import { Button } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  Form,
+  FormLabel,
+  InputGroup,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 
@@ -6,6 +12,7 @@ import LoginCSS from "./assets/Login.module.css";
 import { LoginSchema } from "../../schemas/authSchema";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { Toaster } from "react-hot-toast";
 
 export const Login = () => {
   const { onLoginSubmit } = useContext(AuthContext);
@@ -20,23 +27,22 @@ export const Login = () => {
         email: "",
         password: "",
       },
-      validationSchema: LoginSchema,
       onSubmit,
     });
 
   return (
     <section className={LoginCSS.wrapper}>
-      <form
+      <Form
         id={LoginCSS["login"]}
         method="POST"
         onSubmit={handleSubmit}
         autoComplete="on"
       >
-        <div className="container">
+        <Container className="container">
           <h2>Login</h2>
 
-          <fieldset>
-            <label htmlFor="email">Email: </label>
+          <InputGroup>
+            <FormLabel htmlFor="email">Email: </FormLabel>
             <input
               type="email"
               name="email"
@@ -51,8 +57,7 @@ export const Login = () => {
               onChange={handleChange("email")}
               onBlur={handleBlur("email")}
             />
-            {errors.email && touched.email && <p>{errors.email}</p>}
-          </fieldset>
+          </InputGroup>
 
           <fieldset>
             <label htmlFor="login-pass">Password: </label>
@@ -69,10 +74,13 @@ export const Login = () => {
               onChange={handleChange("password")}
               onBlur={handleBlur("password")}
             />
-            {errors.password && touched.password && <p>{errors.password}</p>}
           </fieldset>
 
-          <Button type="submit" className={LoginCSS.submit} value="Submit">
+          <Button
+            type="submit"
+            className={`w-100 ${LoginCSS.submit}`}
+            value="Submit"
+          >
             {" "}
             Login
           </Button>
@@ -82,8 +90,9 @@ export const Login = () => {
               If you don't have profile, click <Link to="/register">here</Link>
             </span>
           </p>
-        </div>
-      </form>
+        </Container>
+      </Form>
+      <Toaster />
     </section>
   );
 };
