@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 
 import { carServiceFactory } from "../../../services/carService";
 import { useAuthService } from "../../../hooks/useAuthService";
@@ -23,7 +23,7 @@ export const Details = ({ isOwner }) => {
     });
   }, [articleId]);
 
-  isOwner(car._ownerId, userId);
+  //isOwner(car._ownerId, userId);
 
   return (
     <div className={DetailsCSS.wrapper}>
@@ -31,9 +31,9 @@ export const Details = ({ isOwner }) => {
       <div className="row">
         <div className="col-lg-5">
           <img
-            className={DetailsCSS.image}
             src={car.carImage}
-            alt="car image"
+            className={DetailsCSS.image}
+            alt="car displayed"
           />
         </div>
         <div className={`col-lg-7 ${DetailsCSS.carInfo}`}>

@@ -1,4 +1,4 @@
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
 
@@ -30,7 +30,7 @@ export const CarArticle = ({ _id, carImage, model, price, fuel, bodyType }) => {
 
   return (
     <div className={CarArticleCSS.wrapper}>
-      <img src={carImage} alt="car picture" />
+      <img src={carImage} alt="car displayed" />
       <div className="row">
         <div className="col-7">
           <Link to={`/catalog/${_id}`}>

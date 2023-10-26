@@ -4,9 +4,9 @@ import { DateRangePicker } from "react-date-range";
 import { format, differenceInDays } from "date-fns";
 import { carServiceFactory } from "../../../../services/carService";
 import { useAuthService } from "../../../../hooks/useAuthService";
-import { Toaster, toast } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
-import DirveModalCSS from "./DriveModal.module.css";
+import DriveModalCSS from "./DriveModal.module.css";
 import "react-date-range/dist/styles.css"; // main calendar style file
 import "react-date-range/dist/theme/default.css"; // theme calendar css file
 
@@ -55,13 +55,13 @@ export const DriveModal = ({ show, toggleShow, id, successfullSubmission }) => {
                   "dd MMM yyyy"
                 )}`}
               </Button>
-              <span className={DirveModalCSS.label}>
+              <span className={DriveModalCSS.label}>
                 Total days renting:
-                <p className={DirveModalCSS.value}>{`${days}`}</p>days
+                <p className={DriveModalCSS.value}>{`${days}`}</p>days
               </span>
-              <span className={DirveModalCSS.label}>
+              <span className={DriveModalCSS.label}>
                 Final price:
-                <p className={DirveModalCSS.value}>{`${totalPrice}`}</p>$
+                <p className={DriveModalCSS.value}>{`${totalPrice}`}</p>$
               </span>
               {openCalendar && (
                 <DateRangePicker
