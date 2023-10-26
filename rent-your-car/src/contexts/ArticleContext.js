@@ -53,9 +53,9 @@ export const ArticleProvider = ({ children }) => {
   };
 
   const onDelete = (id) => {
-    carService.delete(id);
+    //  carService.delete(id);
 
-    setArticles((state) => state.filter((x) => x.id !== id));
+    setArticles((state) => state.filter((x) => x._id !== id));
 
     toast.success("Article deleted successfully!", {
       duration: 1000,

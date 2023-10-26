@@ -11,10 +11,8 @@ export const ArticleSchema = yup.object().shape({
     .matches(pricePattern, { message: "Price must be between 1$ and 1000$!" })
     .required("Field is required!"),
   bodyType: yup.string().required("Field is required!"),
-  carImage: yup
-    .string()
-    .required("Field is required!")
-    .matches(urlPattern, { message: "Enter valid image URL!" }),
+  carImage: yup.string().required("Field is required!"),
+  // .matches(urlPattern, { message: "Enter valid image URL!" }),
   year: yup
     .string()
     .matches(yearPattern, { message: "Year must be between 1900-2023!" })

@@ -1,19 +1,20 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { Button, Container } from "react-bootstrap";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 import { carServiceFactory } from "../../../services/carService";
 import { useAuthService } from "../../../hooks/useAuthService";
 import DetailsCSS from "./Details.module.css";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { ArticleContext } from "../../../contexts/ArticleContext";
-import { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 
-export const Details = ({ isOwner }) => {
+export const Details = () => {
   //const { username } = useContext(AuthContext)
   const { onDelete } = useContext(ArticleContext);
   const { userId } = useContext(AuthContext);
   const carService = useAuthService(carServiceFactory);
+  const navigate = useNavigate();
   const { articleId } = useParams();
   const [car, setCar] = useState({});
 
@@ -23,7 +24,15 @@ export const Details = ({ isOwner }) => {
     });
   }, [articleId]);
 
-  //isOwner(car._ownerId, userId);
+  const onDeleteClick = async () => {
+    //eslint-disable-next-line no-restricted-globals
+    const result = confirm(`Are you sure you want to delete ${car.model}`);
+
+    if (result) {
+      await carService.delete(articleId);
+      onDelete(articleId);
+    }
+  };
 
   return (
     <div className={DetailsCSS.wrapper}>
@@ -50,7 +59,7 @@ export const Details = ({ isOwner }) => {
           <Link to={`/catalog/${articleId}/edit`}>
             <Button variant="outline-info">Edit</Button>
           </Link>
-          <Button onClick={() => onDelete(articleId)} variant="outline-danger">
+          <Button onClick={onDeleteClick} variant="outline-danger">
             Delete
           </Button>
           <Toaster />
