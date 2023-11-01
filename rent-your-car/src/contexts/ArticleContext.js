@@ -1,16 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect, createContext, useContext } from "react";
+import { useState, useEffect, createContext } from "react";
 
 import { carServiceFactory } from "../services/carService";
-import { AuthContext } from "./AuthContext";
 import { useAuthService } from "../hooks/useAuthService";
-import { authServiceFactory } from "../services/authService";
 import toast from "react-hot-toast";
 
 export const ArticleContext = createContext();
 
 export const ArticleProvider = ({ children }) => {
-  const { token, userId } = useContext(AuthContext);
   const navigate = useNavigate();
   const [articles, setArticles] = useState([]);
 

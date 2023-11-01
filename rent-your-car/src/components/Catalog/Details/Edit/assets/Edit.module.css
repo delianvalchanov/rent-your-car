@@ -19,6 +19,19 @@ div.container {
     display: block;
     text-transform: capitalize;
  }
+
+ .carField {
+   width: 20rem;
+   margin-bottom: 1rem;
+   padding: 5px;
+}
+
+.inputerr{
+  width: 20rem;
+  margin-bottom: 0;
+  padding: 5px;
+  border: 1px solid red;
+}
  
  h3 {
     font-family: "Indie Flower", cursive;
