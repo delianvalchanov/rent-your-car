@@ -5,11 +5,15 @@
          rgba(0, 0, 0, 0.1) 100%
       ),
       url("./images/background.jpg");
-   height: 40rem;
+   height: 30rem;
    display: flex;
    justify-content: flex-end;
    margin-top: 2rem;
    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+}
+
+.content{
+   align-content: space-around;
 }
 
 .slogan {
@@ -24,4 +28,16 @@
 .poppers {
    height: 0;
    font-family: "Indie Flower", cursive;
+}
+
+@media screen and (max-width: 1024px) {
+   .slogan {
+      font-size: 3rem;
+      margin-right: 0rem;
+   }
+}
+@media screen and (max-width: 768px) {
+   .slogan{
+      font-size: 2.5rem;
+   }
 }

@@ -4,8 +4,13 @@
    background-color: transparent;
 }
 
+.flexWrapper{
+   display: flex;
+   justify-content: space-between;
+}
+
 .brand {
-   background: url(./images/footer-brand.png) center no-repeat;
+   background: url(./images/footer-brand.png) left no-repeat;
    display: inline-block;
    background-size: 11.5rem;
    height: 6rem;
@@ -15,13 +20,12 @@
 .brandContainer {
    display: flex;
    align-items: center;
-   padding-left: 6rem;
 }
 
 .contacts {
    display: flex;
    justify-content: flex-end;
-   padding-right: 3rem;
+   padding-right: 1rem;
    font-family: "Indie Flower", cursive;
    color: black;
 }
@@ -29,4 +33,11 @@
 .telNum {
    font-size: 1.3rem;
    color: black;
+}
+
+@media screen and (max-width: 1024px) {
+.contacts{
+   justify-content: flex-start;
+   margin-top: 1.5rem;
+}
 }

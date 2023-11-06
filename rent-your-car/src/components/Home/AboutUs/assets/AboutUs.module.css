@@ -11,14 +11,14 @@
 }
 
 .articleWrapper {
-   justify-content: center;
+   justify-content: flex-start;
    align-items: center;
    margin: 4rem 0;
 }
 
 .imageWrapper {
    display: flex;
-   justify-content: center;
+   justify-content: start;
 }
 
 .image {
@@ -49,5 +49,12 @@
 .desc {
    font-size: 1rem;
    font-style: italic;
-   width: 40rem;
+}
+@media screen and (max-width: 1024px) {
+   .imageWrapper, .descHeading{
+      margin-bottom: 1rem;
+   }
+  .articleWrapper{
+   margin-bottom: 2rem;
+  }
 }
