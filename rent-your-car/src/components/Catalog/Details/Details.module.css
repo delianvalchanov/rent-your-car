@@ -1,5 +1,5 @@
 .wrapper {
-   margin: 3rem;
+   margin: 3rem 0;
 }
 
 .wrapper h2 {
@@ -9,8 +9,14 @@
 }
 
 .image {
-   width: 30rem;
+   object-fit: contain;
    height: auto;
+   width: -webkit-fill-available;
+   margin-right: 2rem;
+}
+
+.flexContainer{
+   align-items: center;
 }
 
 .temp{
@@ -19,12 +25,16 @@
    height: auto;
    display: inline-block;
    background: url(../CarArticle/assets/images/cartemp.svg) center no-repeat;
-   background-size: contain;
+   background-size: cover;
 }
 
 .carInfo {
    font-size: 1rem;
    font-weight: 600;
+}
+
+button{
+   margin-right: .5rem;
 }
 
 Link {

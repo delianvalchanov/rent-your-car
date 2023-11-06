@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 
 import { carServiceFactory } from "../../../services/carService";
 import { useAuthService } from "../../../hooks/useAuthService";
@@ -35,36 +35,38 @@ export const Details = () => {
   };
 
   return (
-    <div className={DetailsCSS.wrapper}>
-      <h2>Detailed information</h2>
-      <div className="row">
-        <div className="col-lg-5">
-          <img
-            src={car.carImage}
-            className={DetailsCSS.image}
-            alt="car displayed"
-          />
+    <Container>
+      <div className={DetailsCSS.wrapper}>
+        <h2>Detailed information</h2>
+        <div className={`row ${DetailsCSS.flexContainer}`}>
+          <div className="col-lg-5">
+            <img
+              src={car.carImage}
+              className={DetailsCSS.image}
+              alt="car displayed"
+            />
+          </div>
+          <div className={`col-lg-6 ${DetailsCSS.carInfo}`}>
+            <p>Car model: {car.model} </p>
+            <p>Year of production: {car.year} </p>
+            <p>Price: {car.price}$/per day</p>
+            <p>Body type: {car.bodyType}</p>
+            <p>Fuel type: {car.fuel}</p>
+            <p>Why should you choose this vehicle: {car.description}</p>
+          </div>
         </div>
-        <div className={`col-lg-7 ${DetailsCSS.carInfo}`}>
-          <p>Car model: {car.model} </p>
-          <p>Year of production: {car.year} </p>
-          <p>Price: {car.price}$/per day</p>
-          <p>Body type: {car.bodyType}</p>
-          <p>Fuel type: {car.fuel}</p>
-          <p>Why should you choose this vehicle: {car.description}</p>
-        </div>
+        {userId === car._ownerId && (
+          <div>
+            <Link to={`/catalog/${articleId}/edit`}>
+              <Button variant="outline-info">Edit</Button>
+            </Link>
+            <Button onClick={onDeleteClick} variant="outline-danger">
+              Delete
+            </Button>
+            <Toaster />
+          </div>
+        )}
       </div>
-      {userId === car._ownerId && (
-        <div>
-          <Link to={`/catalog/${articleId}/edit`}>
-            <Button variant="outline-info">Edit</Button>
-          </Link>
-          <Button onClick={onDeleteClick} variant="outline-danger">
-            Delete
-          </Button>
-          <Toaster />
-        </div>
-      )}
-    </div>
+    </Container>
   );
 };
