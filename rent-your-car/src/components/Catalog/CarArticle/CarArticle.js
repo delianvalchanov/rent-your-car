@@ -32,28 +32,28 @@ export const CarArticle = ({ _id, carImage, model, price, fuel, bodyType }) => {
     <div className={CarArticleCSS.wrapper}>
       <img src={carImage} alt="car displayed" />
       <div className="row">
-        <div className="col-7">
+        <div className="col-6">
           <Link to={`/catalog/${_id}`}>
             <h4 className={CarArticleCSS.carModel}>{model}</h4>
             <p>{articleId}</p>
           </Link>
         </div>
-        <div className={`col-5 ${CarArticleCSS.price}`}>{price}$/day</div>
+        <div className={`col-6 ${CarArticleCSS.price}`}>{price}$/day</div>
       </div>
 
       <div className={`row ${CarArticleCSS.carData}`}>
-        <div className="col-7">
+        <div className="col-6">
           <span>{`Host: ${email}`}</span>
         </div>
-        <div className="col-5">
+        <div className="col-6">
           {" "}
           <StarRating id={_id} />
         </div>
       </div>
 
       <div className={`row ${CarArticleCSS.carData}`}>
-        <span className={`col-7 ${CarArticleCSS.carEngine}`}>Fuel: {fuel}</span>
-        <span className={`col-5 ${CarArticleCSS.carSeatCapacity}`}>
+        <span className={`col-6 ${CarArticleCSS.carEngine}`}>Fuel: {fuel}</span>
+        <span className={`col-6 ${CarArticleCSS.carSeatCapacity}`}>
           Body type: {bodyType}
         </span>
       </div>

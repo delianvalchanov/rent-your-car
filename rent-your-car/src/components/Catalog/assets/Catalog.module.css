@@ -7,8 +7,23 @@
    justify-content: center;
 }
 
-.addBtn {
-   margin: 0 0 2rem 2.5rem;
-   font-size: 1.5rem;
-   padding: .7 1rem;
+.button{
+   width: 50%;
+   margin-bottom: 2rem;
 }
+.articleWrapper{
+   justify-content: space-between;
+}
+.addBtn {
+   margin-bottom: 5rem;
+   font-size: 1.5rem;
+}
+
+@media screen and (max-width: 1024px) {
+    .button{
+      width: 100%;
+    }
+    .articleWrapper{
+      justify-content: center;
+    }
+   }

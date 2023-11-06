@@ -1,6 +1,6 @@
 import { CarArticle } from "./CarArticle";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { useContext } from "react";
 
 import CatalogCSS from "./assets/Catalog.module.css";
@@ -12,21 +12,25 @@ export const Catalog = () => {
   const { articles } = useContext(ArticleContext);
 
   return (
-    <>
-      <div className={`row ${CatalogCSS.wrapper}`}>
+    <Container>
+      <div className={CatalogCSS.wrapper}>
         {isAuthenticated && (
           <Link to="/catalog/create" className={CatalogCSS.addBtn}>
-            <Button variant="outline-primary">Add new</Button>
+            <Button className={CatalogCSS.button} variant="outline-primary">Add new</Button>
           </Link>
         )}
-        {articles.map((x) => (
-          <CarArticle
-            key={x._id}
-            {...x}
-            className={`col-lg-4 ${CatalogCSS.article}`}
-          />
-        ))}
+        <div className={`row ${CatalogCSS.articleWrapper}`}>
+          {articles.map((x) => (
+
+            <CarArticle
+              key={x._id}
+              {...x}
+              className={`col-lg-5 ${CatalogCSS.article}`}
+            />
+
+          ))}
+        </div>
       </div>
-    </>
+    </Container>
   );
 };
